@@ -396,7 +396,7 @@
 
         async function loadWebhookConfiguration(secret) {
             try {
-                const res = await fetch(`/api/webhook?secret=${encodeURIComponent(secret)}`);
+                const res = await fetch(`/api/leads?secret=${encodeURIComponent(secret)}&action=webhook`);
                 if (res.ok) {
                     const data = await res.json();
                     if (data && data.webhookUrl) {
@@ -420,21 +420,14 @@
 
             try {
                 // Post to webhook configuration API
-                const response = await fetch('/api/webhook', {
+                const response = await fetch('/api/leads', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ secret, webhookUrl })
+                    body: JSON.stringify({ secret, action: 'webhook', webhookUrl })
                 });
 
                 const data = await response.json();
                 if (response.ok) {
-                    // Update Vercel side config just in case they differ
-                    fetch('/api/leads', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ secret, action: 'webhook', webhookUrl })
-                    }).catch(err => console.error('Cloud webhook update secondary sync issue:', err));
-
                     msg.className = "text-sm text-center text-emerald-600 font-semibold";
                     msg.innerText = "Webhook URL synced successfully!";
                     setTimeout(() => toggleWebhookModal(false), 1500);

@@ -54,13 +54,22 @@ function forwardToWebhook(webhookUrl, payload) {
 // GET /api/leads - Retrieve Captured Leads (Secure)
 app.get('/api/leads', (req, res) => {
     try {
-        const { secret } = req.query;
+        const { secret, action } = req.query;
 
         if (secret !== 'premier123') {
             return res.status(401).json({
                 status: 'error',
                 message: 'Unauthorized: Invalid secret key.'
             });
+        }
+
+        if (action === 'webhook') {
+            const configPath = path.join(__dirname, 'webhook_config.json');
+            let config = { webhookUrl: '' };
+            if (fs.existsSync(configPath)) {
+                config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+            }
+            return res.json(config);
         }
 
         const dbPath = path.join(__dirname, 'leads_db.json');
@@ -81,50 +90,25 @@ app.get('/api/leads', (req, res) => {
     }
 });
 
-// GET /api/webhook - Get CRM Webhook URL
-app.get('/api/webhook', (req, res) => {
-    try {
-        const { secret } = req.query;
-        if (secret !== 'premier123') {
-            return res.status(401).json({ status: 'error', message: 'Unauthorized.' });
-        }
-
-        const configPath = path.join(__dirname, 'webhook_config.json');
-        let config = { webhookUrl: '' };
-        if (fs.existsSync(configPath)) {
-            config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-        }
-
-        return res.json(config);
-    } catch (err) {
-        return res.status(500).json({ status: 'error', message: 'Failed to load webhook configuration.' });
-    }
-});
-
-// POST /api/webhook - Update CRM Webhook URL
-app.post('/api/webhook', (req, res) => {
-    try {
-        const { secret, webhookUrl } = req.body;
-        if (secret !== 'premier123') {
-            return res.status(401).json({ status: 'error', message: 'Unauthorized.' });
-        }
-
-        const configPath = path.join(__dirname, 'webhook_config.json');
-        fs.writeFileSync(configPath, JSON.stringify({ webhookUrl: webhookUrl || '' }, null, 2), 'utf8');
-
-        return res.json({
-            status: 'success',
-            message: 'CRM Webhook URL updated successfully!'
-        });
-    } catch (err) {
-        return res.status(500).json({ status: 'error', message: 'Failed to update webhook configuration.' });
-    }
-});
-
 // POST /api/leads - Webhook endpoint to capture leads
 app.post('/api/leads', (req, res) => {
     try {
         const payload = req.body;
+        const { secret, action, webhookUrl } = payload;
+
+        // If action is webhook configuration, handle it and return
+        if (action === 'webhook') {
+            if (secret !== 'premier123') {
+                return res.status(401).json({ status: 'error', message: 'Unauthorized.' });
+            }
+            const configPath = path.join(__dirname, 'webhook_config.json');
+            fs.writeFileSync(configPath, JSON.stringify({ webhookUrl: webhookUrl || '' }, null, 2), 'utf8');
+            return res.json({
+                status: 'success',
+                message: 'CRM Webhook URL updated successfully!'
+            });
+        }
+
         const { lead, calculatorState } = payload;
 
         if (!lead || !lead.name || !lead.email || !lead.phone) {
