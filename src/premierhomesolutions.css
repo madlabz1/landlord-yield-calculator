@@ -1,0 +1,639 @@
+/* ==========================================================================
+   Premier Home Solutions Brand Color System & Fonts
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@700&display=swap');
+
+:root {
+    --color-brand-blue: #21409a;
+    --color-brand-red: #bf1e2e;
+    --color-text-dark: #222222;
+    --color-text-muted: #5f5f5f;
+    --color-bg-light: #f4f4f4;
+    
+    --color-blue-glow: rgba(33, 64, 154, 0.12);
+    --color-red-glow: rgba(191, 30, 46, 0.12);
+    --color-shadow-soft: rgba(0, 0, 0, 0.04);
+}
+
+body {
+    font-family: 'Poppins', 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    overflow-x: hidden;
+}
+
+/* Branded Background Enhancers */
+.bg-glow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bg-glow-1 {
+    position: absolute;
+    top: -15%;
+    left: -15%;
+    width: 70vw;
+    height: 70vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(33, 64, 154, 0.05) 0%, rgba(33, 64, 154, 0.01) 70%, transparent 100%);
+    filter: blur(100px);
+}
+
+.bg-glow-2 {
+    position: absolute;
+    bottom: -15%;
+    right: -15%;
+    width: 70vw;
+    height: 70vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(191, 30, 46, 0.04) 0%, rgba(191, 30, 46, 0.01) 70%, transparent 100%);
+    filter: blur(120px);
+}
+
+/* Calculator Visual Panels (Light Theme Premium Card) */
+.glass-panel {
+    background: #ffffff;
+    border: 1px solid rgba(33, 64, 154, 0.08);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(33, 64, 154, 0.02);
+    border-radius: 20px;
+}
+
+.glass-card {
+    background: #ffffff;
+    border: 1px solid rgba(228, 228, 228, 0.8);
+    box-shadow: 0 4px 6px -1px var(--color-shadow-soft);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    border-color: rgba(33, 64, 154, 0.25);
+    box-shadow: 0 10px 25px -10px rgba(33, 64, 154, 0.12);
+    transform: translateY(-2px);
+}
+
+.glass-card.selected {
+    background: rgba(33, 64, 154, 0.03);
+    border-color: var(--color-brand-blue);
+    box-shadow: 0 0 20px rgba(33, 64, 154, 0.08);
+}
+
+.glass-card.selected::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--color-brand-blue), var(--color-brand-red));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Custom Input Field Formatting */
+.glass-input {
+    background: #ffffff;
+    border: 1.5px solid #e4e4e4;
+    color: var(--color-text-dark);
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.glass-input:focus {
+    outline: none;
+    border-color: var(--color-brand-blue);
+    box-shadow: 0 0 0 4px rgba(33, 64, 154, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.01);
+    background: #ffffff;
+}
+
+.glass-input-success:focus {
+    border-color: var(--color-brand-blue);
+    box-shadow: 0 0 0 4px rgba(33, 64, 154, 0.1);
+}
+
+/* Prefix and Addon styles inside custom input container */
+.input-addon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-addon-prefix {
+    position: absolute;
+    left: 1rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+.glass-input:focus ~ .input-addon-prefix {
+    color: var(--color-brand-blue);
+}
+
+/* Custom Slider Styles (Royal Blue Brand Styling) */
+input[type="range"].premium-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type="range"].premium-slider:focus {
+    outline: none;
+}
+
+/* Custom Range Track */
+input[type="range"].premium-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 7px;
+    cursor: pointer;
+    background: #e4e4e4;
+    border-radius: 9999px;
+}
+
+input[type="range"].premium-slider::-moz-range-track {
+    width: 100%;
+    height: 7px;
+    cursor: pointer;
+    background: #e4e4e4;
+    border-radius: 9999px;
+}
+
+/* Custom Range Slider Thumb */
+input[type="range"].premium-slider::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--color-brand-blue);
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6.5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15), 0 0 0 4px rgba(33, 64, 154, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type="range"].premium-slider::-webkit-slider-thumb:hover {
+    background: var(--color-brand-red);
+    transform: scale(1.15);
+    box-shadow: 0 2px 7px rgba(0,0,0,0.2), 0 0 0 5px rgba(191, 30, 46, 0.15);
+}
+
+input[type="range"].premium-slider::-webkit-slider-thumb:active {
+    transform: scale(0.95);
+}
+
+input[type="range"].premium-slider::-moz-range-thumb {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: var(--color-brand-blue);
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15), 0 0 0 4px rgba(33, 64, 154, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type="range"].premium-slider::-moz-range-thumb:hover {
+    background: var(--color-brand-red);
+    transform: scale(1.15);
+    box-shadow: 0 2px 7px rgba(0,0,0,0.2), 0 0 0 5px rgba(191, 30, 46, 0.15);
+}
+
+/* Branded Stepper Layout (Wizard Steps) */
+.step-dot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff;
+    border: 2px solid #e4e4e4;
+    color: var(--color-text-muted);
+}
+
+.step-dot::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-dot.active {
+    border-color: var(--color-brand-blue);
+    color: var(--color-brand-blue);
+    font-weight: 700;
+}
+
+.step-dot.active::after {
+    border-color: rgba(33, 64, 154, 0.3);
+    transform: scale(1.2);
+}
+
+.step-dot.completed {
+    background: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
+    color: #ffffff;
+}
+
+.step-dot.completed::after {
+    border-color: rgba(33, 64, 154, 0.2);
+    transform: scale(1.1);
+}
+
+/* Switch Toggles (SPV Limited Company Comparison) */
+.ltd-toggle-btn {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1.5px solid #e4e4e4;
+}
+
+.ltd-toggle-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(33, 64, 154, 0.05);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ltd-toggle-btn.active {
+    border-color: var(--color-brand-blue);
+    background: rgba(33, 64, 154, 0.02);
+}
+
+.ltd-toggle-btn.active::after {
+    opacity: 1;
+}
+
+/* Lead-Lock Overlay (Branded Soft Blurred Screen) */
+.lead-lock-overlay {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: rgba(34, 34, 34, 0.85); /* Obscure with corporate dark gray overlay */
+}
+
+/* Stepper animations */
+.fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom Branded Checkbox */
+.custom-checkbox {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: #ffffff;
+    border: 1.5px solid #e4e4e4;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.custom-checkbox:hover input ~ .checkbox-checkmark {
+    border-color: var(--color-brand-blue);
+}
+
+.custom-checkbox input:checked ~ .checkbox-checkmark {
+    background: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
+}
+
+.checkbox-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked ~ .checkbox-checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkbox-checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Micro-animations and active transitions */
+.btn-primary {
+    background-color: var(--color-brand-blue);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-brand-red);
+    box-shadow: 0 4px 12px rgba(191, 30, 46, 0.25);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--color-brand-blue);
+    border: 1.5px solid var(--color-brand-blue);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(33, 64, 154, 0.04);
+}
+
+/* ==========================================================================
+   Print Stylesheet
+   Matches Premier Home Solutions Branding for 1-Page PDF Downloads
+   ========================================================================== */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 0.8cm 1.2cm;
+    }
+
+    body {
+        background-color: #ffffff !important;
+        background-image: none !important;
+        color: #222222 !important;
+        font-size: 9.5pt !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Hide UI navigation items */
+    .bg-glow-container,
+    .wizard-controls-container,
+    .wizard-steps-indicator,
+    .lead-lock-overlay,
+    .no-print,
+    header.zoacres-header,
+    .mobile-header,
+    footer {
+        display: none !important;
+    }
+
+    /* Force block print visibility */
+    .print\:block {
+        display: block !important;
+    }
+
+    .glass-panel {
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Branded Print Header */
+    .print-header {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid var(--color-brand-blue) !important;
+        padding-top: 0.2rem;
+        padding-bottom: 0.8rem;
+        margin-bottom: 1rem;
+        position: relative;
+    }
+
+    .print-header::before {
+        content: '';
+        position: absolute;
+        top: -0.4rem;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(to right, var(--color-brand-blue), var(--color-brand-red)) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .print-header-brand {
+        font-size: 18pt !important;
+        font-weight: 800 !important;
+        color: var(--color-brand-blue) !important;
+    }
+
+    .print-header-meta {
+        text-align: right;
+        font-size: 8pt !important;
+        color: var(--color-text-muted) !important;
+        line-height: 1.3;
+    }
+
+    /* Printable Sections */
+    .print-section-title {
+        font-size: 11pt !important;
+        font-weight: 700 !important;
+        text-transform: uppercase;
+        color: var(--color-brand-blue) !important;
+        border-bottom: 1.5px solid #e4e4e4 !important;
+        padding-bottom: 0.2rem;
+        margin-top: 0.8rem;
+        margin-bottom: 0.5rem;
+        page-break-after: avoid;
+    }
+
+    /* Print Specs */
+    .print-spec-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.6rem !important;
+        margin-bottom: 0.8rem;
+    }
+
+    .print-spec-item {
+        background: #fdfdfd !important;
+        border: 1px solid #e4e4e4 !important;
+        border-radius: 6px !important;
+        padding: 0.6rem 0.8rem !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .print-spec-label {
+        font-size: 7.5pt !important;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--color-text-muted) !important;
+        margin-bottom: 0.1rem;
+        display: block;
+    }
+
+    .print-spec-value {
+        font-size: 11pt !important;
+        font-weight: 700 !important;
+        color: var(--color-text-dark) !important;
+    }
+
+    /* Yield Dashboard Cards */
+    .print-dashboard-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.6rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .print-dashboard-card {
+        background: #ffffff !important;
+        border: 1px solid #e4e4e4 !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 0.9rem !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .print-dashboard-card.success-accent {
+        border-color: var(--color-brand-blue) !important;
+        background: rgba(33, 64, 154, 0.02) !important;
+    }
+
+    .print-dashboard-card.primary-accent {
+        border-color: var(--color-brand-red) !important;
+        background: rgba(191, 30, 46, 0.02) !important;
+    }
+
+    .print-card-value {
+        font-size: 16pt !important;
+        font-weight: 800 !important;
+        color: var(--color-text-dark) !important;
+        line-height: 1.1;
+    }
+
+    .print-card-value.text-emerald-600 {
+        color: var(--color-brand-blue) !important;
+    }
+
+    .print-card-value.text-red-600 {
+        color: var(--color-brand-red) !important;
+    }
+
+    .print-card-label {
+        font-size: 8.5pt !important;
+        color: var(--color-text-dark) !important;
+        font-weight: 700 !important;
+        margin-bottom: 0.2rem;
+        display: block;
+    }
+
+    /* Print chart mockup */
+    .print-chart-container {
+        margin: 1rem 0;
+        padding: 0.8rem 1.1rem;
+        background: #fafafa !important;
+        border: 1px solid #e4e4e4 !important;
+        border-radius: 8px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .print-chart-bar-bg {
+        height: 10px !important;
+        background-color: #e4e4e4 !important;
+        border-radius: 9999px !important;
+        position: relative;
+        overflow: hidden;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .print-chart-bar-fill {
+        height: 100% !important;
+        background: linear-gradient(to right, var(--color-brand-blue), var(--color-brand-red)) !important;
+        border-radius: 9999px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Print Disclaimer & Info */
+    .print-footer-legal {
+        margin-top: 1.2rem;
+        border-top: 1px dashed #e4e4e4 !important;
+        padding-top: 0.5rem;
+        font-size: 7.5pt !important;
+        color: var(--color-text-muted) !important;
+        line-height: 1.3;
+    }
+
+    .print-signature-block {
+        display: flex !important;
+        justify-content: space-between;
+        margin-top: 1.2rem;
+    }
+
+    .print-sig-col {
+        width: 45%;
+        border-top: 1px solid #5f5f5f !important;
+        padding-top: 0.3rem;
+        font-size: 8pt !important;
+        color: var(--color-text-muted) !important;
+    }
+
+    /* General layout tags */
+    .bg-gray-50 {
+        background: #fdfdfd !important;
+        border: 1px solid #e4e4e4 !important;
+        padding: 0.75rem !important;
+        border-radius: 6px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Prevent break splits */
+    .print-header, 
+    .print-section-title, 
+    .print-spec-grid, 
+    .print-dashboard-grid, 
+    .print-chart-container, 
+    .print-signature-block, 
+    .print-footer-legal,
+    .bg-gray-50 {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+}

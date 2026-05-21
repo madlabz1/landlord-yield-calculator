@@ -6,3 +6,5 @@ leads_db.json
 dist/
 build/
 .vercel
+webhook_config.json
+scratch_site.html

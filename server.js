@@ -221,6 +221,19 @@ app.post('/api/leads', (req, res) => {
     }
 });
 
+// Explicit clean URL routes for custom business pages
+app.get('/premierhomesolutions', (req, res) => {
+    res.sendFile(path.join(__dirname, 'premierhomesolutions.html'));
+});
+
+app.get('/premeirhomesolutions', (req, res) => {
+    res.sendFile(path.join(__dirname, 'premeirhomesolutions.html'));
+});
+
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
 // Serve index.html as the base route
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
