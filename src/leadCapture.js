@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
     printClientNames.forEach(span => span.textContent = nameVal);
 
     // Deliver to Mockup Webhook Database Server
-    fetch('http://localhost:3000/api/leads', {
+    fetch('/api/leads', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
