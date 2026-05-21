@@ -388,10 +388,15 @@
 
             <!-- Wizard Bottom Actions -->
             <div class="wizard-controls-container flex items-center justify-between border-t border-gray-100 pt-6 mt-8 relative z-10">
-                <!-- Back Button -->
-                <button type="button" id="prev-btn" class="px-6 py-3 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-xs font-bold tracking-wide text-brand-muted hover:text-brand-dark transition duration-300 disabled:opacity-40 disabled:pointer-events-none" disabled>
-                    Back
-                </button>
+                <!-- Back & Start Over Buttons -->
+                <div class="flex items-center space-x-3">
+                    <button type="button" id="prev-btn" class="px-6 py-3 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-xs font-bold tracking-wide text-brand-muted hover:text-brand-dark transition duration-300 disabled:opacity-40 disabled:pointer-events-none" disabled>
+                        Back
+                    </button>
+                    <button type="button" id="reset-btn" class="px-6 py-3 rounded-xl border border-red-200 bg-red-50 hover:bg-red-100 text-xs font-bold tracking-wide text-brand-red transition duration-300 hidden">
+                        Start Over
+                    </button>
+                </div>
 
                 <!-- Continue Button -->
                 <button type="button" id="next-btn" class="flex items-center space-x-2 bg-brand-blue hover:bg-brand-red text-white font-bold tracking-wide text-xs px-6 py-3.5 rounded-xl shadow-md shadow-brand-blue/15 hover:shadow-brand-red/25 transition-all duration-300 transform active:scale-95">

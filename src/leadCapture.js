@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Wizard Navigation
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
+  const resetBtn = document.getElementById('reset-btn');
   const steps = [
     document.getElementById('step-1'),
     document.getElementById('step-2'),
@@ -234,6 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Button states
     prevBtn.disabled = currentStep === 1;
+    if (resetBtn) {
+      if (currentStep === 1) {
+        resetBtn.classList.add('hidden');
+      } else {
+        resetBtn.classList.remove('hidden');
+      }
+    }
     
     // Change text of Continue button on last step
     const nextSpan = nextBtn.querySelector('span');
@@ -406,6 +414,31 @@ document.addEventListener('DOMContentLoaded', () => {
       runCalculations();
     }
   });
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      // Set to default inputs
+      purchasePriceInput.value = 350000;
+      monthlyRentInput.value = 1650;
+      ltvSlider.value = 60;
+      ltvInput.value = 60;
+      interestRateInput.value = 4.5;
+      
+      // Reset Tax Band Selection (default 'higher')
+      updateTaxBandUI('higher');
+      
+      // Reset Ltd Co Selection (default true)
+      updateLtdCoUI(true);
+      
+      // Navigate to step 1
+      currentStep = 1;
+      updateStepUI();
+      
+      // Recalculate and Save
+      runCalculations();
+      saveCache();
+    });
+  }
 
   // --- Lead Form Webhook Delivery Endpoint ---
   leadForm.addEventListener('submit', (e) => {
