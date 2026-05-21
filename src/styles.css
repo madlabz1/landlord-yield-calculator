@@ -1,19 +1,28 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap'); */
+/* ==========================================================================
+   Premier Home Solutions Brand Color System & Fonts
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@700&display=swap');
 
 :root {
-    --color-primary-glow: rgba(59, 130, 246, 0.15);
-    --color-success-glow: rgba(16, 185, 129, 0.2);
-    --color-accent-glow: rgba(99, 102, 241, 0.15);
+    --color-brand-blue: #21409a;
+    --color-brand-red: #bf1e2e;
+    --color-text-dark: #222222;
+    --color-text-muted: #5f5f5f;
+    --color-bg-light: #f4f4f4;
+    
+    --color-blue-glow: rgba(33, 64, 154, 0.12);
+    --color-red-glow: rgba(191, 30, 46, 0.12);
+    --color-shadow-soft: rgba(0, 0, 0, 0.04);
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #030712; /* Very deep slate black */
-    color: #f3f4f6;
+    font-family: 'Poppins', 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
     overflow-x: hidden;
 }
 
-/* Background animated gradient blobs */
+/* Branded Background Enhancers */
 .bg-glow-container {
     position: fixed;
     top: 0;
@@ -27,80 +36,51 @@ body {
 
 .bg-glow-1 {
     position: absolute;
-    top: -10%;
-    left: -10%;
-    width: 60vw;
-    height: 60vw;
+    top: -15%;
+    left: -15%;
+    width: 70vw;
+    height: 70vw;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(37, 99, 235, 0.03) 70%, transparent 100%);
-    filter: blur(80px);
-    animation: floatGlow 25s ease-in-out infinite alternate;
+    background: radial-gradient(circle, rgba(33, 64, 154, 0.05) 0%, rgba(33, 64, 154, 0.01) 70%, transparent 100%);
+    filter: blur(100px);
 }
 
 .bg-glow-2 {
     position: absolute;
-    bottom: -10%;
-    right: -10%;
-    width: 60vw;
-    height: 60vw;
+    bottom: -15%;
+    right: -15%;
+    width: 70vw;
+    height: 70vw;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.04) 70%, transparent 100%);
-    filter: blur(100px);
-    animation: floatGlow 30s ease-in-out infinite alternate-reverse;
-}
-
-.bg-glow-3 {
-    position: absolute;
-    top: 30%;
-    left: 40%;
-    width: 40vw;
-    height: 40vw;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(79, 70, 229, 0.01) 60%, transparent 100%);
+    background: radial-gradient(circle, rgba(191, 30, 46, 0.04) 0%, rgba(191, 30, 46, 0.01) 70%, transparent 100%);
     filter: blur(120px);
-    animation: floatGlow 20s ease-in-out infinite alternate;
 }
 
-@keyframes floatGlow {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-    50% {
-        transform: translate(5%, 10%) scale(1.1);
-    }
-    100% {
-        transform: translate(-5%, -5%) scale(0.95);
-    }
-}
-
-/* Glassmorphism Styles */
+/* Calculator Visual Panels (Light Theme Premium Card) */
 .glass-panel {
-    background: rgba(17, 24, 39, 0.6);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background: #ffffff;
+    border: 1px solid rgba(33, 64, 154, 0.08);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(33, 64, 154, 0.02);
+    border-radius: 20px;
 }
 
 .glass-card {
-    background: rgba(31, 41, 55, 0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: #ffffff;
+    border: 1px solid rgba(228, 228, 228, 0.8);
+    box-shadow: 0 4px 6px -1px var(--color-shadow-soft);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-    background: rgba(31, 41, 55, 0.55);
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+    border-color: rgba(33, 64, 154, 0.25);
+    box-shadow: 0 10px 25px -10px rgba(33, 64, 154, 0.12);
     transform: translateY(-2px);
 }
 
 .glass-card.selected {
-    background: rgba(16, 185, 129, 0.06);
-    border-color: rgba(16, 185, 129, 0.4);
-    box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+    background: rgba(33, 64, 154, 0.03);
+    border-color: var(--color-brand-blue);
+    box-shadow: 0 0 20px rgba(33, 64, 154, 0.08);
 }
 
 .glass-card.selected::before {
@@ -109,35 +89,36 @@ body {
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.5), rgba(59, 130, 246, 0.3));
+    background: linear-gradient(135deg, var(--color-brand-blue), var(--color-brand-red));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
 }
 
-/* Premium Custom Input Formatting */
+/* Custom Input Field Formatting */
 .glass-input {
-    background: rgba(17, 24, 39, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    background: #ffffff;
+    border: 1.5px solid #e4e4e4;
+    color: var(--color-text-dark);
+    font-weight: 500;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .glass-input:focus {
     outline: none;
-    border-color: rgba(59, 130, 246, 0.5);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: rgba(17, 24, 39, 0.85);
+    border-color: var(--color-brand-blue);
+    box-shadow: 0 0 0 4px rgba(33, 64, 154, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.01);
+    background: #ffffff;
 }
 
 .glass-input-success:focus {
-    border-color: rgba(16, 185, 129, 0.5);
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-brand-blue);
+    box-shadow: 0 0 0 4px rgba(33, 64, 154, 0.1);
 }
 
-/* Prefix inside custom input container */
+/* Prefix and Addon styles inside custom input container */
 .input-addon-container {
     position: relative;
     display: flex;
@@ -147,21 +128,17 @@ body {
 .input-addon-prefix {
     position: absolute;
     left: 1rem;
-    font-weight: 500;
-    color: rgba(156, 163, 175, 0.8);
+    font-weight: 600;
+    color: var(--color-text-muted);
     pointer-events: none;
     transition: color 0.3s ease;
 }
 
 .glass-input:focus ~ .input-addon-prefix {
-    color: #60a5fa;
+    color: var(--color-brand-blue);
 }
 
-.glass-input-success:focus ~ .input-addon-prefix {
-    color: #34d399;
-}
-
-/* Premium Range Slider Overrides */
+/* Custom Slider Styles (Royal Blue Brand Styling) */
 input[type="range"].premium-slider {
     -webkit-appearance: none;
     width: 100%;
@@ -172,73 +149,74 @@ input[type="range"].premium-slider:focus {
     outline: none;
 }
 
-/* Track Styles */
+/* Custom Range Track */
 input[type="range"].premium-slider::-webkit-slider-runnable-track {
     width: 100%;
-    height: 8px;
+    height: 7px;
     cursor: pointer;
-    background: rgba(31, 41, 55, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #e4e4e4;
     border-radius: 9999px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 input[type="range"].premium-slider::-moz-range-track {
     width: 100%;
-    height: 8px;
+    height: 7px;
     cursor: pointer;
-    background: rgba(31, 41, 55, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #e4e4e4;
     border-radius: 9999px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Thumb Styles */
+/* Custom Range Slider Thumb */
 input[type="range"].premium-slider::-webkit-slider-thumb {
-    height: 22px;
-    width: 22px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    background: var(--color-brand-blue);
+    border: 2px solid #ffffff;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -7px;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4), 0 0 0 4px rgba(16, 185, 129, 0.15);
+    margin-top: -6.5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15), 0 0 0 4px rgba(33, 64, 154, 0.1);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input[type="range"].premium-slider::-webkit-slider-thumb:hover {
+    background: var(--color-brand-red);
     transform: scale(1.15);
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6), 0 0 0 6px rgba(16, 185, 129, 0.25);
+    box-shadow: 0 2px 7px rgba(0,0,0,0.2), 0 0 0 5px rgba(191, 30, 46, 0.15);
 }
 
 input[type="range"].premium-slider::-webkit-slider-thumb:active {
     transform: scale(0.95);
-    box-shadow: 0 0 8px rgba(16, 185, 129, 0.8), 0 0 0 2px rgba(16, 185, 129, 0.4);
 }
 
 input[type="range"].premium-slider::-moz-range-thumb {
-    height: 20px;
-    width: 20px;
-    border: none;
+    height: 18px;
+    width: 18px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    background: var(--color-brand-blue);
+    border: 2px solid #ffffff;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4), 0 0 0 4px rgba(16, 185, 129, 0.15);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15), 0 0 0 4px rgba(33, 64, 154, 0.1);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input[type="range"].premium-slider::-moz-range-thumb:hover {
+    background: var(--color-brand-red);
     transform: scale(1.15);
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6), 0 0 0 6px rgba(16, 185, 129, 0.25);
+    box-shadow: 0 2px 7px rgba(0,0,0,0.2), 0 0 0 5px rgba(191, 30, 46, 0.15);
 }
 
-/* Premium Stepper Styles */
+/* Branded Stepper Layout (Wizard Steps) */
 .step-dot {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff;
+    border: 2px solid #e4e4e4;
+    color: var(--color-text-muted);
 }
 
 .step-dot::after {
@@ -251,29 +229,35 @@ input[type="range"].premium-slider::-moz-range-thumb:hover {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.step-dot.active {
+    border-color: var(--color-brand-blue);
+    color: var(--color-brand-blue);
+    font-weight: 700;
+}
+
 .step-dot.active::after {
-    border-color: #10b981;
+    border-color: rgba(33, 64, 154, 0.3);
     transform: scale(1.2);
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
 }
 
 .step-dot.completed {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    border-color: transparent;
-    color: white;
+    background: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
+    color: #ffffff;
 }
 
 .step-dot.completed::after {
-    border-color: rgba(16, 185, 129, 0.3);
+    border-color: rgba(33, 64, 154, 0.2);
     transform: scale(1.1);
 }
 
-/* Premium Segmented / Switch Toggle for Ltd Co */
+/* Switch Toggles (SPV Limited Company Comparison) */
 .ltd-toggle-btn {
     position: relative;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1.5px solid #e4e4e4;
 }
 
 .ltd-toggle-btn::after {
@@ -283,38 +267,28 @@ input[type="range"].premium-slider::-moz-range-thumb:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), transparent);
+    background: rgba(33, 64, 154, 0.05);
     opacity: 0;
     transition: opacity 0.3s ease;
+}
+
+.ltd-toggle-btn.active {
+    border-color: var(--color-brand-blue);
+    background: rgba(33, 64, 154, 0.02);
 }
 
 .ltd-toggle-btn.active::after {
     opacity: 1;
 }
 
-/* Lead-Lock Frosted Screen overlay */
+/* Lead-Lock Overlay (Branded Soft Blurred Screen) */
 .lead-lock-overlay {
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    background: rgba(15, 23, 42, 0.82);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: rgba(34, 34, 34, 0.85); /* Obscure with corporate dark gray overlay */
 }
 
-/* Dynamic dashboard meters/charts mockups */
-.dashboard-progress-fill {
-    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Subtle glowing text and symbols */
-.glow-text-emerald {
-    text-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
-}
-
-.glow-text-indigo {
-    text-shadow: 0 0 12px rgba(129, 140, 248, 0.4);
-}
-
-/* Form Animations */
+/* Stepper animations */
 .fade-in {
     animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -330,7 +304,7 @@ input[type="range"].premium-slider::-moz-range-thumb:hover {
     }
 }
 
-/* Premium CSS Checkbox Customisation */
+/* Custom Branded Checkbox */
 .custom-checkbox {
     position: relative;
     cursor: pointer;
@@ -351,21 +325,19 @@ input[type="range"].premium-slider::-moz-range-thumb:hover {
     left: 0;
     height: 20px;
     width: 20px;
-    background: rgba(17, 24, 39, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: #ffffff;
+    border: 1.5px solid #e4e4e4;
     border-radius: 6px;
     transition: all 0.2s ease;
 }
 
 .custom-checkbox:hover input ~ .checkbox-checkmark {
-    border-color: rgba(16, 185, 129, 0.5);
-    background: rgba(17, 24, 39, 0.8);
+    border-color: var(--color-brand-blue);
 }
 
 .custom-checkbox input:checked ~ .checkbox-checkmark {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    border-color: transparent;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    background: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
 }
 
 .checkbox-checkmark:after {
@@ -379,8 +351,8 @@ input[type="range"].premium-slider::-moz-range-thumb:hover {
 }
 
 .custom-checkbox .checkbox-checkmark:after {
-    left: 7px;
-    top: 3px;
+    left: 6px;
+    top: 2px;
     width: 5px;
     height: 10px;
     border: solid white;
@@ -388,80 +360,95 @@ input[type="range"].premium-slider::-moz-range-thumb:hover {
     transform: rotate(45deg);
 }
 
+/* Micro-animations and active transitions */
+.btn-primary {
+    background-color: var(--color-brand-blue);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-brand-red);
+    box-shadow: 0 4px 12px rgba(191, 30, 46, 0.25);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--color-brand-blue);
+    border: 1.5px solid var(--color-brand-blue);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(33, 64, 154, 0.04);
+}
+
 /* ==========================================================================
    Print Stylesheet
-   Highly tailored for a clean, brandable corporate PDF download
-   ========================================================================== */
-/* ==========================================================================
-   Print Stylesheet
-   Highly tailored for a clean, brandable corporate PDF download
+   Matches Premier Home Solutions Branding for 1-Page PDF Downloads
    ========================================================================== */
 @media print {
     @page {
         size: A4 portrait;
-        margin: 0.8cm 1.2cm; /* Optimal margin to ensure everything fits on exactly 1 page */
+        margin: 0.8cm 1.2cm;
     }
 
     body {
         background-color: #ffffff !important;
         background-image: none !important;
-        color: #111827 !important;
-        font-size: 9.5pt !important; /* Slightly smaller base font for single-page security */
+        color: #222222 !important;
+        font-size: 9.5pt !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
 
-    /* Hide unnecessary UI elements */
+    /* Hide UI navigation items */
     .bg-glow-container,
     .wizard-controls-container,
     .wizard-steps-indicator,
     .lead-lock-overlay,
     .no-print,
-    header,
-    footer,
-    main {
+    header.zoacres-header,
+    .mobile-header,
+    footer {
         display: none !important;
     }
 
-    /* Ensure print block is fully visible */
+    /* Force block print visibility */
     .print\:block {
         display: block !important;
     }
 
-    /* Expand & format the glass panels into clean corporate elements */
     .glass-panel {
         background: #ffffff !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
         border: none !important;
         box-shadow: none !important;
-        width: 100% !important;
-        max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
-    /* Print Header block with premium colored branding bar */
+    /* Branded Print Header */
     .print-header {
         display: flex !important;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 2px solid #1e3a8a !important; /* Bold corporate brand color */
-        padding-top: 0.5rem;
-        padding-bottom: 1rem;
-        margin-bottom: 1.2rem;
+        border-bottom: 3px solid var(--color-brand-blue) !important;
+        padding-top: 0.2rem;
+        padding-bottom: 0.8rem;
+        margin-bottom: 1rem;
         position: relative;
     }
 
-    /* Elegant top accent bar for premium presentation */
     .print-header::before {
         content: '';
         position: absolute;
-        top: -0.5rem;
+        top: -0.4rem;
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(to right, #10b981, #3b82f6) !important;
+        background: linear-gradient(to right, var(--color-brand-blue), var(--color-brand-red)) !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
@@ -469,136 +456,125 @@ input[type="range"].premium-slider::-moz-range-thumb:hover {
     .print-header-brand {
         font-size: 18pt !important;
         font-weight: 800 !important;
-        letter-spacing: -0.5px;
-        color: #1e3a8a !important; /* Deep Blue corporate tone */
-    }
-
-    .print-header-brand span {
-        color: #10b981 !important; /* Success Green highlight */
+        color: var(--color-brand-blue) !important;
     }
 
     .print-header-meta {
         text-align: right;
-        font-size: 8.5pt !important;
-        color: #4b5563 !important;
+        font-size: 8pt !important;
+        color: var(--color-text-muted) !important;
         line-height: 1.3;
     }
 
-    /* Section Headings */
+    /* Printable Sections */
     .print-section-title {
         font-size: 11pt !important;
         font-weight: 700 !important;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #1e3a8a !important;
-        border-bottom: 1px solid #e5e7eb !important;
-        padding-bottom: 0.25rem;
-        margin-top: 1rem;
-        margin-bottom: 0.6rem;
+        color: var(--color-brand-blue) !important;
+        border-bottom: 1.5px solid #e4e4e4 !important;
+        padding-bottom: 0.2rem;
+        margin-top: 0.8rem;
+        margin-bottom: 0.5rem;
         page-break-after: avoid;
     }
 
-    /* Property Summary Grid for Print */
+    /* Print Specs */
     .print-spec-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 0.75rem !important;
-        margin-bottom: 1rem;
-        page-break-inside: avoid;
+        gap: 0.6rem !important;
+        margin-bottom: 0.8rem;
     }
 
     .print-spec-item {
-        background: #f9fafb !important;
-        border: 1px solid #e5e7eb !important;
+        background: #fdfdfd !important;
+        border: 1px solid #e4e4e4 !important;
         border-radius: 6px !important;
-        padding: 0.75rem 1rem !important;
+        padding: 0.6rem 0.8rem !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        page-break-inside: avoid;
     }
 
     .print-spec-label {
         font-size: 7.5pt !important;
         text-transform: uppercase;
         font-weight: 600;
-        color: #6b7280 !important;
-        margin-bottom: 0.15rem;
+        color: var(--color-text-muted) !important;
+        margin-bottom: 0.1rem;
         display: block;
     }
 
     .print-spec-value {
-        font-size: 12pt !important;
+        font-size: 11pt !important;
         font-weight: 700 !important;
-        color: #111827 !important;
+        color: var(--color-text-dark) !important;
     }
 
-    /* Yield Dashboard metrics */
+    /* Yield Dashboard Cards */
     .print-dashboard-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 0.75rem !important;
-        margin-bottom: 1.2rem;
-        page-break-inside: avoid;
+        gap: 0.6rem !important;
+        margin-bottom: 1rem;
     }
 
     .print-dashboard-card {
         background: #ffffff !important;
-        border: 1px solid #e5e7eb !important;
+        border: 1px solid #e4e4e4 !important;
         border-radius: 8px !important;
-        padding: 0.85rem 1rem !important;
+        padding: 0.75rem 0.9rem !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        page-break-inside: avoid;
     }
 
     .print-dashboard-card.success-accent {
-        border-color: #10b981 !important;
-        background: #f0fdf4 !important; /* Soft green */
+        border-color: var(--color-brand-blue) !important;
+        background: rgba(33, 64, 154, 0.02) !important;
     }
 
     .print-dashboard-card.primary-accent {
-        border-color: #3b82f6 !important;
-        background: #eff6ff !important; /* Soft blue */
+        border-color: var(--color-brand-red) !important;
+        background: rgba(191, 30, 46, 0.02) !important;
     }
 
     .print-card-value {
-        font-size: 18pt !important;
+        font-size: 16pt !important;
         font-weight: 800 !important;
-        color: #111827 !important;
+        color: var(--color-text-dark) !important;
         line-height: 1.1;
     }
 
     .print-card-value.text-emerald-600 {
-        color: #059669 !important;
+        color: var(--color-brand-blue) !important;
     }
 
     .print-card-value.text-red-600 {
-        color: #dc2626 !important;
+        color: var(--color-brand-red) !important;
     }
 
     .print-card-label {
         font-size: 8.5pt !important;
-        color: #374151 !important;
+        color: var(--color-text-dark) !important;
         font-weight: 700 !important;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.2rem;
         display: block;
     }
 
-    /* Cashflow bar chart for print */
+    /* Print chart mockup */
     .print-chart-container {
-        margin: 1.2rem 0;
-        padding: 1rem 1.25rem;
-        background: #f9fafb !important;
-        border: 1px solid #e5e7eb !important;
+        margin: 1rem 0;
+        padding: 0.8rem 1.1rem;
+        background: #fafafa !important;
+        border: 1px solid #e4e4e4 !important;
         border-radius: 8px !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        page-break-inside: avoid;
     }
 
     .print-chart-bar-bg {
-        height: 12px !important;
-        background-color: #e5e7eb !important;
+        height: 10px !important;
+        background-color: #e4e4e4 !important;
         border-radius: 9999px !important;
         position: relative;
         overflow: hidden;
@@ -608,51 +584,47 @@ input[type="range"].premium-slider::-moz-range-thumb:hover {
 
     .print-chart-bar-fill {
         height: 100% !important;
-        background: linear-gradient(to right, #10b981, #059669) !important;
+        background: linear-gradient(to right, var(--color-brand-blue), var(--color-brand-red)) !important;
         border-radius: 9999px !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
 
-    /* Signature & Legal disclaimer blocks */
+    /* Print Disclaimer & Info */
     .print-footer-legal {
-        margin-top: 1.5rem;
-        border-top: 1px dashed #d1d5db !important;
-        padding-top: 0.6rem;
+        margin-top: 1.2rem;
+        border-top: 1px dashed #e4e4e4 !important;
+        padding-top: 0.5rem;
         font-size: 7.5pt !important;
-        color: #6b7280 !important;
+        color: var(--color-text-muted) !important;
         line-height: 1.3;
-        page-break-inside: avoid;
     }
 
     .print-signature-block {
         display: flex !important;
         justify-content: space-between;
-        margin-top: 1.5rem;
-        page-break-inside: avoid;
+        margin-top: 1.2rem;
     }
 
     .print-sig-col {
         width: 45%;
-        border-top: 1px solid #9ca3af !important;
-        padding-top: 0.4rem;
+        border-top: 1px solid #5f5f5f !important;
+        padding-top: 0.3rem;
         font-size: 8pt !important;
-        color: #4b5563 !important;
-        page-break-inside: avoid;
+        color: var(--color-text-muted) !important;
     }
 
-    /* Form target action block */
+    /* General layout tags */
     .bg-gray-50 {
-        background: #f9fafb !important;
-        border: 1px solid #e5e7eb !important;
-        padding: 0.85rem !important;
+        background: #fdfdfd !important;
+        border: 1px solid #e4e4e4 !important;
+        padding: 0.75rem !important;
         border-radius: 6px !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        page-break-inside: avoid;
     }
 
-    /* Ensure strict A4 Page boundaries */
+    /* Prevent break splits */
     .print-header, 
     .print-section-title, 
     .print-spec-grid, 

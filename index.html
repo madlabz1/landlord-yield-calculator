@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UK Landlord Yield & Tax Optimisation Calculator</title>
+    <title>Premier Home Solutions - Landlord Yield & Tax Optimisation Calculator</title>
     <!-- Tailwind CSS v3 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,13 +12,16 @@
                 extend: {
                     colors: {
                         brand: {
-                            deep: '#030712',
-                            slate: '#111827',
-                            card: '#1f2937',
-                            primary: '#3b82f6', // Premium Blue
-                            success: '#10b981', // Emerald Green
-                            accent: '#6366f1',  // Indigo
+                            blue: '#21409a', // Royal Blue
+                            red: '#bf1e2e',  // Crimson Red
+                            dark: '#222222',  // Charcoal
+                            light: '#f4f4f4', // Off-White
+                            muted: '#5f5f5f', // Muted Gray
                         }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Open Sans', 'sans-serif']
                     }
                 }
             }
@@ -26,191 +29,232 @@
     </script>
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="src/styles.css">
-    <!-- Google Fonts Plus Jakarta Sans -->
+    <!-- Google Fonts Poppins and Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="min-h-screen text-gray-100 flex flex-col justify-between antialiased relative">
+<body class="min-h-screen text-brand-dark flex flex-col justify-between antialiased relative">
 
-    <!-- Premium Background Glow Mesh -->
+    <!-- Premium Background Glow Mesh (Uses custom color variables in styles.css) -->
     <div class="bg-glow-container no-print">
         <div class="bg-glow-1"></div>
         <div class="bg-glow-2"></div>
-        <div class="bg-glow-3"></div>
     </div>
 
-    <!-- Header Navigation Section -->
-    <header class="w-full py-5 px-6 md:px-12 glass-panel border-b border-white/5 sticky top-0 z-40 no-print">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <!-- Brand Logo -->
-            <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-brand-success to-brand-primary p-2.5 rounded-xl shadow-lg shadow-brand-success/15 flex items-center justify-center">
-                    <!-- Premium House Logo with up-right growth arrow -->
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6M9 9h6v4H9V9z"></path>
+    <!-- ==================== TOP CONTACT BAR (Premier Home Solutions) ==================== -->
+    <div class="w-full bg-[#1b347d] text-white py-2 px-6 text-xs font-medium no-print">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap justify-center md:justify-start items-center gap-6">
+                <!-- Phone -->
+                <a href="tel:01216473712" class="flex items-center space-x-1.5 hover:text-red-200 transition">
+                    <svg class="w-4 h-4 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                     </svg>
-                </div>
-                <div>
-                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">YIELD<span class="text-brand-success">OPTIMA</span></span>
-                    <span class="block text-[10px] tracking-wider text-gray-400 font-bold uppercase">Landlord Tax Advisory</span>
-                </div>
+                    <span>Call Us: 0121 647 3712</span>
+                </a>
+                <!-- Address -->
+                <span class="flex items-center space-x-1.5">
+                    <svg class="w-4 h-4 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span>1281 Bristol Road South, Longbridge, B31 2SP</span>
+                </span>
+                <!-- Email -->
+                <a href="mailto:info@premierhomesolutions.co.uk" class="flex items-center space-x-1.5 hover:text-red-200 transition">
+                    <svg class="w-4 h-4 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>info@premierhomesolutions.co.uk</span>
+                </a>
             </div>
+            <div>
+                <span class="text-[10px] tracking-wider uppercase bg-brand-red/20 px-2 py-0.5 rounded text-red-100 font-bold">West Midlands Property Experts</span>
+            </div>
+        </div>
+    </div>
 
-            <!-- Desktop Print PDF CTA -->
-            <div class="hidden md:flex items-center space-x-4">
-                <span class="text-xs text-gray-400 font-medium">UK Tax Code Compliant 2026/27</span>
-                <button onclick="window.print()" class="flex items-center space-x-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-xl text-sm font-semibold tracking-wide transition duration-300">
-                    <svg class="w-4 h-4 text-brand-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <!-- ==================== MAIN HEADER ==================== -->
+    <header class="w-full bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Brand Logo -->
+            <a href="https://premierhomesolutions.co.uk/" class="flex items-center" title="Premier Home Solutions">
+                <img src="https://premierhomesolutions.co.uk/wp-content/uploads/2019/06/logo.jpg" alt="Premier Home Solutions Logo" class="h-12 md:h-16 w-auto object-contain">
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-8 font-semibold text-sm text-brand-dark">
+                <a href="https://premierhomesolutions.co.uk/" class="hover:text-brand-blue transition">Home</a>
+                <a href="https://premierhomesolutions.co.uk/property-investments/" class="hover:text-brand-blue transition text-brand-blue font-bold border-b-2 border-brand-blue pb-1">Property Investments</a>
+                <a href="https://premierhomesolutions.co.uk/house-sales/" class="hover:text-brand-blue transition">House Sales</a>
+                <a href="https://premierhomesolutions.co.uk/contact-us/" class="hover:text-brand-blue transition">Contact Us</a>
+            </nav>
+
+            <!-- Navigation Actions -->
+            <div class="flex items-center space-x-3">
+                <button onclick="window.print()" class="flex items-center space-x-1.5 bg-gray-100 hover:bg-gray-200 text-brand-dark px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition duration-300">
+                    <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
                     </svg>
-                    <span>Print Executive PDF</span>
+                    <span>Print Report</span>
                 </button>
+                <a href="/admin.html" class="bg-brand-blue hover:bg-brand-red text-white px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition duration-300 shadow-sm shadow-brand-blue/10">
+                    Admin Panel
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- Main Widget Container -->
+    <!-- ==================== MAIN WIDGET LAYOUT ==================== -->
     <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start no-print">
         
         <!-- ==================== LEFT PANEL: MULTI-STEP WIZARD ==================== -->
-        <section class="lg:col-span-7 glass-panel rounded-3xl p-6 md:p-8 border border-white/10 relative overflow-hidden flex flex-col justify-between min-h-[620px] shadow-2xl">
+        <section class="lg:col-span-7 glass-panel rounded-3xl p-6 md:p-8 relative overflow-hidden flex flex-col justify-between min-h-[620px]">
             
             <!-- Glow background overlay -->
-            <div class="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 bg-brand-primary/5 rounded-full filter blur-3xl pointer-events-none"></div>
+            <div class="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 bg-brand-blue/5 rounded-full filter blur-3xl pointer-events-none"></div>
 
             <div>
                 <!-- Wizard Title -->
                 <div class="mb-8 relative z-10">
-                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-success/10 text-brand-success border border-brand-success/20 mb-2">
-                        Optimisation Engine v4.2
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold bg-brand-blue/5 text-brand-blue border border-brand-blue/15 mb-3 uppercase tracking-wider">
+                        Premier Investment Suite
                     </span>
-                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-br from-white to-gray-300 bg-clip-text text-transparent">
-                        Maximise Your UK Rental Yield
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-dark">
+                        HMO & Property Yield Optimizer
                     </h1>
-                    <p class="text-sm text-gray-400 mt-1.5 font-medium">
-                        Model your properties, evaluate corporate vehicles, and beat the Section 24 tax drag.
+                    <p class="text-xs md:text-sm text-brand-muted mt-2 font-medium leading-relaxed">
+                        Assess yields, compare SPV Limited Company sheltering, and optimize property cash flows under professional West Midlands HMO standards.
                     </p>
                 </div>
 
-                <!-- Wizard Progress Indicator / Stepper -->
+                <!-- Wizard Progress Stepper -->
                 <div class="wizard-steps-indicator relative flex items-center justify-between mb-10 px-2">
                     <!-- Progress Line (Background) -->
-                    <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-slate-800 rounded-full z-0"></div>
+                    <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-gray-200 rounded-full z-0"></div>
                     <!-- Active Progress Line -->
-                    <div class="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-brand-success to-brand-primary rounded-full z-0 transition-all duration-500" style="width: 25%;"></div>
+                    <div class="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-brand-blue to-brand-red rounded-full z-0 transition-all duration-500" style="width: 0%;"></div>
 
-                    <!-- Step 1 Indicator -->
+                    <!-- Step 1 Dot -->
                     <div class="relative z-10 flex flex-col items-center">
-                        <div class="step-dot active w-10 h-10 rounded-full bg-slate-900 border border-white/15 text-white font-bold text-sm flex items-center justify-center">
-                            <!-- Home Icon -->
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <div class="step-dot active w-10 h-10 rounded-full text-sm flex items-center justify-center">
+                            <!-- Property Icon -->
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
                         </div>
-                        <span class="text-[10px] md:text-xs font-bold text-brand-success mt-2 tracking-wide uppercase">Property</span>
+                        <span class="text-[9px] md:text-[10px] font-bold mt-2 tracking-wide uppercase">Property</span>
                     </div>
 
-                    <!-- Step 2 Indicator -->
+                    <!-- Step 2 Dot -->
                     <div class="relative z-10 flex flex-col items-center">
-                        <div class="step-dot w-10 h-10 rounded-full bg-slate-900 border border-white/10 text-gray-500 font-bold text-sm flex items-center justify-center">
+                        <div class="step-dot w-10 h-10 rounded-full text-sm flex items-center justify-center">
                             <!-- Percent Icon -->
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
                         </div>
-                        <span class="text-[10px] md:text-xs font-semibold text-gray-500 mt-2 tracking-wide uppercase">Mortgage</span>
+                        <span class="text-[9px] md:text-[10px] font-bold mt-2 tracking-wide uppercase text-gray-400">Financing</span>
                     </div>
 
-                    <!-- Step 3 Indicator -->
+                    <!-- Step 3 Dot -->
                     <div class="relative z-10 flex flex-col items-center">
-                        <div class="step-dot w-10 h-10 rounded-full bg-slate-900 border border-white/10 text-gray-500 font-bold text-sm flex items-center justify-center">
-                            <!-- Tax Band Icon -->
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        <div class="step-dot w-10 h-10 rounded-full text-sm flex items-center justify-center">
+                            <!-- User/Tax Icon -->
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
                         </div>
-                        <span class="text-[10px] md:text-xs font-semibold text-gray-500 mt-2 tracking-wide uppercase">Tax Band</span>
+                        <span class="text-[9px] md:text-[10px] font-bold mt-2 tracking-wide uppercase text-gray-400">Tax Band</span>
                     </div>
 
-                    <!-- Step 4 Indicator -->
+                    <!-- Step 4 Dot -->
                     <div class="relative z-10 flex flex-col items-center">
-                        <div class="step-dot w-10 h-10 rounded-full bg-slate-900 border border-white/10 text-gray-500 font-bold text-sm flex items-center justify-center">
-                            <!-- Company Structure Icon -->
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        <div class="step-dot w-10 h-10 rounded-full text-sm flex items-center justify-center">
+                            <!-- Setup Icon -->
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
                         </div>
-                        <span class="text-[10px] md:text-xs font-semibold text-gray-500 mt-2 tracking-wide uppercase">Structure</span>
+                        <span class="text-[9px] md:text-[10px] font-bold mt-2 tracking-wide uppercase text-gray-400">Shelter</span>
                     </div>
                 </div>
 
                 <!-- Form Steps Container -->
-                <div class="relative z-10 min-h-[300px]">
+                <div class="relative z-10 min-h-[320px] text-brand-dark">
 
                     <!-- STEP 1: PROPERTY SPECIFICATION -->
                     <div id="step-1" class="step-pane fade-in space-y-6">
-                        <div class="border-l-2 border-brand-success pl-4 py-1 mb-2">
-                            <h3 class="text-lg font-bold text-white">Step 1: Property Details</h3>
-                            <p class="text-xs text-gray-400">Specify property purchase metrics and rent expectation.</p>
+                        <div class="border-l-3 border-brand-blue pl-4 py-1 mb-2">
+                            <h3 class="text-base font-bold text-brand-dark">Step 1: Property Specifications</h3>
+                            <p class="text-xs text-brand-muted">Provide the acquisition values and rent metrics for the BTL/HMO property.</p>
                         </div>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Purchase Price -->
                             <div class="space-y-2">
-                                <label for="purchase-price" class="block text-xs md:text-sm font-bold tracking-wide text-gray-300 uppercase">
+                                <label for="purchase-price" class="block text-xs font-bold tracking-wide text-brand-dark uppercase">
                                     Property Purchase Price
                                 </label>
                                 <div class="input-addon-container">
-                                    <input type="number" id="purchase-price" placeholder="350,000" class="glass-input glass-input-success w-full rounded-2xl py-4 pl-10 pr-4 text-lg font-semibold tracking-wide placeholder-gray-600 focus:placeholder-transparent" required>
-                                    <span class="input-addon-prefix text-lg">£</span>
+                                    <input type="number" id="purchase-price" placeholder="350000" class="glass-input glass-input-success w-full rounded-2xl py-3.5 pl-10 pr-4 text-base font-bold placeholder-gray-400 focus:placeholder-transparent" required>
+                                    <span class="input-addon-prefix text-base">£</span>
                                 </div>
-                                <span class="block text-[10px] text-gray-400 font-medium">Standard residential acquisition value</span>
+                                <span class="block text-[10px] text-brand-muted font-medium">Acquisition price in the West Midlands</span>
                             </div>
 
                             <!-- Estimated Monthly Rent -->
                             <div class="space-y-2">
-                                <label for="monthly-rent" class="block text-xs md:text-sm font-bold tracking-wide text-gray-300 uppercase">
+                                <label for="monthly-rent" class="block text-xs font-bold tracking-wide text-brand-dark uppercase">
                                     Estimated Monthly Rent
                                 </label>
                                 <div class="input-addon-container">
-                                    <input type="number" id="monthly-rent" placeholder="1,650" class="glass-input glass-input-success w-full rounded-2xl py-4 pl-10 pr-4 text-lg font-semibold tracking-wide placeholder-gray-600 focus:placeholder-transparent" required>
-                                    <span class="input-addon-prefix text-lg">£</span>
+                                    <input type="number" id="monthly-rent" placeholder="1650" class="glass-input glass-input-success w-full rounded-2xl py-3.5 pl-10 pr-4 text-base font-bold placeholder-gray-400 focus:placeholder-transparent" required>
+                                    <span class="input-addon-prefix text-base">£</span>
                                 </div>
-                                <span class="block text-[10px] text-gray-400 font-medium">Est. rent per calendar month (PCM)</span>
+                                <span class="block text-[10px] text-brand-muted font-medium">Target rental yield PCM (Single-Let or HMO)</span>
                             </div>
                         </div>
 
                         <!-- Info Tip Box -->
-                        <div class="bg-brand-primary/5 border border-brand-primary/15 rounded-2xl p-4 flex items-start space-x-3">
-                            <svg class="w-5 h-5 text-brand-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <div class="bg-brand-blue/5 border border-brand-blue/15 rounded-2xl p-4 flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-brand-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             <div>
-                                <span class="block text-xs font-bold text-brand-primary tracking-wide uppercase">Valuation Context</span>
-                                <p class="text-xs text-gray-400 mt-0.5 leading-relaxed">
-                                    In the UK, gross yields typically range from 4% to 8%. Standard target benchmarks in areas with strong capital appreciation are approximately 5.5%.
+                                <span class="block text-xs font-bold text-brand-blue tracking-wide uppercase">West Midlands HMO Target Yields</span>
+                                <p class="text-xs text-brand-muted mt-0.5 leading-relaxed font-medium">
+                                    While standard single lets yield 4% to 6% in Birmingham, high-quality professional HMOs structured by Premier Home Solutions routinely deliver gross yields of <span class="text-brand-blue font-bold">9% to 13%</span>.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- STEP 2: FINANCING & MORTGAGE (Hidden by default for wizard structure) -->
+                    <!-- STEP 2: FINANCING & MORTGAGE -->
                     <div id="step-2" class="step-pane hidden fade-in space-y-6">
-                        <div class="border-l-2 border-brand-success pl-4 py-1 mb-2">
-                            <h3 class="text-lg font-bold text-white">Step 2: Financing Structure</h3>
-                            <p class="text-xs text-gray-400">Design your debt structure and expected interest liability.</p>
+                        <div class="border-l-3 border-brand-blue pl-4 py-1 mb-2">
+                            <h3 class="text-base font-bold text-brand-dark">Step 2: Mortgage Debt Structure</h3>
+                            <p class="text-xs text-brand-muted">Define your leveraging strategy and estimated buy-to-let mortgage interest.</p>
                         </div>
 
                         <!-- LTV Slider Component -->
                         <div class="space-y-4">
                             <div class="flex justify-between items-center">
-                                <label for="ltv-slider" class="block text-xs md:text-sm font-bold tracking-wide text-gray-300 uppercase">
+                                <label for="ltv-slider" class="block text-xs font-bold tracking-wide text-brand-dark uppercase">
                                     Mortgage Loan-To-Value (LTV) %
                                 </label>
                                 <div class="flex items-center space-x-2">
                                     <div class="relative w-20">
-                                        <input type="number" id="ltv-input" min="0" max="80" value="60" class="glass-input w-full text-center py-1.5 px-2 rounded-lg text-sm font-bold" />
-                                        <span class="absolute right-2 top-1.5 text-xs text-gray-400 font-bold">%</span>
+                                        <input type="number" id="ltv-input" min="0" max="80" value="60" class="glass-input w-full text-center py-1.5 px-2 rounded-lg text-xs font-bold text-brand-dark" />
+                                        <span class="absolute right-2 top-1.5 text-xs text-brand-muted font-bold">%</span>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="space-y-2">
                                 <input type="range" id="ltv-slider" min="0" max="80" value="60" class="premium-slider w-full mt-2">
-                                <div class="flex justify-between text-[10px] text-gray-500 font-bold px-1">
+                                <div class="flex justify-between text-[9px] text-brand-muted font-bold px-1 uppercase tracking-wide">
                                     <span>0% (Cash Purchase)</span>
                                     <span>40%</span>
                                     <span>60% (Recommended)</span>
@@ -221,121 +265,121 @@
 
                         <!-- Mortgage Interest Rate Input -->
                         <div class="space-y-2">
-                            <label for="interest-rate" class="block text-xs md:text-sm font-bold tracking-wide text-gray-300 uppercase">
-                                Mortgage Interest Rate (Fixed/Variable)
+                            <label for="interest-rate" class="block text-xs font-bold tracking-wide text-brand-dark uppercase">
+                                BTL Mortgage Interest Rate (p.a.)
                             </label>
                             <div class="relative">
-                                <input type="number" id="interest-rate" placeholder="4.5" step="0.01" class="glass-input glass-input-success w-full rounded-2xl py-4 pl-4 pr-10 text-lg font-semibold tracking-wide placeholder-gray-600 focus:placeholder-transparent" required>
-                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-lg font-bold text-gray-400">%</span>
+                                <input type="number" id="interest-rate" placeholder="4.5" step="0.01" value="4.5" class="glass-input w-full rounded-2xl py-3.5 pl-4 pr-10 text-base font-bold placeholder-gray-400 focus:placeholder-transparent" required>
+                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-base font-bold text-brand-muted">%</span>
                             </div>
-                            <span class="block text-[10px] text-gray-400 font-medium">Standard UK buy-to-let mortgage rates average around 4.5% - 5.5% in today's market.</span>
+                            <span class="block text-[10px] text-brand-muted font-medium">Standard UK buy-to-let mortgage rates average around 4.5% - 5.5% in today's market.</span>
                         </div>
                     </div>
 
-                    <!-- STEP 3: TAX PROFILE SELECTION (Hidden by default) -->
+                    <!-- STEP 3: TAX PROFILE SELECTION -->
                     <div id="step-3" class="step-pane hidden fade-in space-y-6">
-                        <div class="border-l-2 border-brand-success pl-4 py-1 mb-2">
-                            <h3 class="text-lg font-bold text-white">Step 3: Income Tax Bracket</h3>
-                            <p class="text-xs text-gray-400">Select your active UK personal employment tax bracket.</p>
+                        <div class="border-l-3 border-brand-blue pl-4 py-1 mb-2">
+                            <h3 class="text-base font-bold text-brand-dark">Step 3: Personal Income Tax Band</h3>
+                            <p class="text-xs text-brand-muted">Select your primary personal UK income tax bracket for Section 24 modeling.</p>
                         </div>
 
                         <!-- Cards Container -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <!-- Basic Rate Card -->
-                            <div class="glass-card rounded-2xl p-5 border border-white/10 hover:border-brand-primary/40 cursor-pointer relative flex flex-col justify-between min-h-[140px] transition-all duration-300" data-tax-band="basic">
+                            <div class="glass-card rounded-2xl p-4 border hover:border-brand-blue/30 cursor-pointer relative flex flex-col justify-between min-h-[130px] transition-all duration-300" data-tax-band="basic">
                                 <div class="flex justify-between items-start">
-                                    <span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-brand-primary/10 text-brand-primary border border-brand-primary/20">Basic Rate</span>
-                                    <span class="w-4 h-4 rounded-full border border-white/20 flex items-center justify-center checkmark-circle"></span>
+                                    <span class="inline-flex px-2 py-0.5 rounded bg-brand-blue/5 text-[9px] font-bold text-brand-blue border border-brand-blue/10">Basic Rate</span>
+                                    <span class="w-4 h-4 rounded-full border border-gray-300 flex items-center justify-center checkmark-circle"></span>
                                 </div>
                                 <div class="mt-4">
-                                    <span class="text-2xl font-extrabold text-white">20%</span>
-                                    <span class="block text-[10px] text-gray-400 font-medium mt-1">Income: £12,571 - £50,270</span>
+                                    <span class="text-2xl font-extrabold text-brand-dark">20%</span>
+                                    <span class="block text-[9px] text-brand-muted font-medium mt-1">Income: £12,571 - £50,270</span>
                                 </div>
                             </div>
 
                             <!-- Higher Rate Card (Active default) -->
-                            <div class="glass-card selected rounded-2xl p-5 border border-brand-success/40 cursor-pointer relative flex flex-col justify-between min-h-[140px] transition-all duration-300" data-tax-band="higher">
+                            <div class="glass-card selected rounded-2xl p-4 border cursor-pointer relative flex flex-col justify-between min-h-[130px] transition-all duration-300" data-tax-band="higher">
                                 <div class="flex justify-between items-start">
-                                    <span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-brand-success/15 text-brand-success border border-brand-success/30">Higher Rate</span>
-                                    <span class="w-4 h-4 rounded-full bg-brand-success flex items-center justify-center checkmark-circle">
+                                    <span class="inline-flex px-2 py-0.5 rounded bg-brand-red/5 text-[9px] font-bold text-brand-red border border-brand-red/10">Higher Rate</span>
+                                    <span class="w-4 h-4 rounded-full bg-brand-blue flex items-center justify-center checkmark-circle">
                                         <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                     </span>
                                 </div>
                                 <div class="mt-4">
-                                    <span class="text-2xl font-extrabold text-white glow-text-emerald">40%</span>
-                                    <span class="block text-[10px] text-gray-300 font-medium mt-1">Income: £50,271 - £125,140</span>
+                                    <span class="text-2xl font-extrabold text-brand-dark">40%</span>
+                                    <span class="block text-[9px] text-brand-muted font-medium mt-1">Income: £50,271 - £125,140</span>
                                 </div>
                             </div>
 
                             <!-- Additional Rate Card -->
-                            <div class="glass-card rounded-2xl p-5 border border-white/10 hover:border-brand-primary/40 cursor-pointer relative flex flex-col justify-between min-h-[140px] transition-all duration-300" data-tax-band="additional">
+                            <div class="glass-card rounded-2xl p-4 border hover:border-brand-blue/30 cursor-pointer relative flex flex-col justify-between min-h-[130px] transition-all duration-300" data-tax-band="additional">
                                 <div class="flex justify-between items-start">
-                                    <span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20">Additional</span>
-                                    <span class="w-4 h-4 rounded-full border border-white/20 flex items-center justify-center checkmark-circle"></span>
+                                    <span class="inline-flex px-2 py-0.5 rounded bg-purple-500/5 text-[9px] font-bold text-purple-600 border border-purple-500/10">Additional</span>
+                                    <span class="w-4 h-4 rounded-full border border-gray-300 flex items-center justify-center checkmark-circle"></span>
                                 </div>
                                 <div class="mt-4">
-                                    <span class="text-2xl font-extrabold text-white">45%</span>
-                                    <span class="block text-[10px] text-gray-400 font-medium mt-1">Income: Over £125,140</span>
+                                    <span class="text-2xl font-extrabold text-brand-dark">45%</span>
+                                    <span class="block text-[9px] text-brand-muted font-medium mt-1">Income: Over £125,140</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Section 24 Warning Alert -->
-                        <div class="bg-rose-500/5 border border-rose-500/15 rounded-2xl p-4 flex items-start space-x-3">
-                            <svg class="w-5 h-5 text-rose-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Section 24 Warning Alert (Light themed) -->
+                        <div class="bg-red-50 border border-red-100 rounded-2xl p-4 flex items-start space-x-3 text-brand-dark">
+                            <svg class="w-5 h-5 text-brand-red mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                             </svg>
                             <div>
-                                <span class="block text-xs font-bold text-rose-400 tracking-wide uppercase">Section 24 Tax Exposure</span>
-                                <p class="text-xs text-gray-400 mt-0.5 leading-relaxed">
-                                    As a Higher/Additional Rate taxpayer, you <span class="text-rose-400 font-semibold">cannot deduct mortgage interest expenses</span> from your rental income before calculating personal tax. This causes dramatic "tax drag".
+                                <span class="block text-xs font-bold text-brand-red tracking-wide uppercase">Section 24 Buy-to-Let Exposure</span>
+                                <p class="text-xs text-brand-muted mt-0.5 leading-relaxed font-medium">
+                                    As a Higher/Additional Rate taxpayer, you <span class="text-brand-red font-semibold">cannot deduct mortgage interest expenses</span> from personal rental revenue. This creates heavy, profit-draining tax drag.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- STEP 4: LTD COMPANY SWITCH STRUCTURE (Hidden by default) -->
+                    <!-- STEP 4: LTD COMPANY SWITCH STRUCTURE -->
                     <div id="step-4" class="step-pane hidden fade-in space-y-6">
-                        <div class="border-l-2 border-brand-success pl-4 py-1 mb-2">
-                            <h3 class="text-lg font-bold text-white">Step 4: Corporate Optimization</h3>
-                            <p class="text-xs text-gray-400">Compare individual vs SPV Limited Company purchasing models.</p>
+                        <div class="border-l-3 border-brand-blue pl-4 py-1 mb-2">
+                            <h3 class="text-base font-bold text-brand-dark">Step 4: Special Purpose Vehicle (SPV) Shelter</h3>
+                            <p class="text-xs text-brand-muted">Compare standard individual ownership against a corporate shelter model.</p>
                         </div>
 
                         <!-- Ltd Company Segmented Slider Toggle -->
                         <div class="space-y-4">
-                            <label class="block text-xs md:text-sm font-bold tracking-wide text-gray-300 uppercase">
+                            <label class="block text-xs font-bold tracking-wide text-brand-dark uppercase">
                                 Purchase via a SPV Limited Company?
                             </label>
                             
-                            <div class="grid grid-cols-2 gap-4 bg-slate-900/80 p-1.5 rounded-2xl border border-white/5">
-                                <button type="button" class="ltd-toggle-btn py-3 px-4 rounded-xl text-sm font-bold text-center tracking-wide transition-all duration-300 bg-white/5 text-gray-300 hover:text-white" id="toggle-ltd-no">
+                            <div class="grid grid-cols-2 gap-4 bg-gray-100 p-1.5 rounded-2xl border border-gray-200">
+                                <button type="button" class="ltd-toggle-btn py-3 px-4 rounded-xl text-xs font-bold text-center tracking-wide transition-all duration-300 bg-white text-brand-dark hover:text-brand-blue border border-gray-200 shadow-sm" id="toggle-ltd-no">
                                     No, Individual
                                 </button>
-                                <button type="button" class="ltd-toggle-btn py-3 px-4 rounded-xl text-sm font-bold text-center tracking-wide transition-all duration-300 bg-gradient-to-r from-brand-success to-emerald-600 text-white shadow-lg shadow-brand-success/15 active" id="toggle-ltd-yes">
+                                <button type="button" class="ltd-toggle-btn py-3 px-4 rounded-xl text-xs font-bold text-center tracking-wide transition-all duration-300 bg-[#21409a] text-white shadow-md shadow-brand-blue/10 active" id="toggle-ltd-yes">
                                     Yes, SPV Company
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Value Proposition Metric Indicator -->
-                        <div class="bg-brand-success/5 border border-brand-success/15 rounded-2xl p-4 flex items-start space-x-3">
-                            <svg class="w-5 h-5 text-brand-success mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Corporate shelter tip (Light themed success-accent) -->
+                        <div class="bg-brand-blue/5 border border-brand-blue/15 rounded-2xl p-4 flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-brand-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             <div>
-                                <span class="block text-xs font-bold text-brand-success tracking-wide uppercase">Corporate Tax Shelter Enabled</span>
-                                <p class="text-xs text-gray-400 mt-0.5 leading-relaxed font-medium">
-                                    SPV Companies can fully offset 100% of mortgage interest as business expenses before paying Corporation Tax (19%-25%). This avoids Section 24 completely, preserving your cash flow.
+                                <span class="block text-xs font-bold text-brand-blue tracking-wide uppercase">Corporate Tax Shelter Enabled</span>
+                                <p class="text-xs text-brand-muted mt-0.5 leading-relaxed font-medium">
+                                    SPV Companies can offset 100% of mortgage interest as business expenses prior to paying Corporation Tax (19%-25%), avoiding Section 24 entirely.
                                 </p>
                             </div>
                         </div>
 
-                        <div class="border border-white/5 bg-slate-950/40 rounded-2xl p-4 flex justify-between items-center">
+                        <div class="border border-gray-200 bg-gray-50 rounded-2xl p-4 flex justify-between items-center text-brand-dark">
                             <div>
-                                <span class="block text-xs font-semibold text-gray-400">Estimated Annual Tax Shield:</span>
-                                <span class="text-lg font-bold text-white tracking-wide">Up to £2,840 per year saved</span>
+                                <span class="block text-[10px] font-bold text-brand-muted uppercase">Estimated Annual Tax Shield:</span>
+                                <span class="text-base font-extrabold text-brand-blue tracking-wide">Shields up to £2,840/yr</span>
                             </div>
-                            <span class="px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide bg-brand-success/10 text-brand-success border border-brand-success/20 rounded-lg">94% Optimum</span>
+                            <span class="px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-wide bg-brand-blue/10 text-brand-blue border border-brand-blue/20 rounded-lg">94% Tax Shelter</span>
                         </div>
                     </div>
 
@@ -343,14 +387,14 @@
             </div>
 
             <!-- Wizard Bottom Actions -->
-            <div class="wizard-controls-container flex items-center justify-between border-t border-white/5 pt-6 mt-8 relative z-10">
+            <div class="wizard-controls-container flex items-center justify-between border-t border-gray-100 pt-6 mt-8 relative z-10">
                 <!-- Back Button -->
-                <button type="button" id="prev-btn" class="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-sm font-semibold tracking-wide text-gray-300 hover:text-white transition duration-300 disabled:opacity-40 disabled:pointer-events-none" disabled>
+                <button type="button" id="prev-btn" class="px-6 py-3 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-xs font-bold tracking-wide text-brand-muted hover:text-brand-dark transition duration-300 disabled:opacity-40 disabled:pointer-events-none" disabled>
                     Back
                 </button>
 
-                <!-- Next / Trigger Analytics Button -->
-                <button type="button" id="next-btn" class="flex items-center space-x-2 bg-gradient-to-r from-brand-success to-emerald-600 hover:from-brand-success/90 hover:to-emerald-600/90 text-white font-bold tracking-wide text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-brand-success/15 hover:shadow-brand-success/25 transition-all duration-300 transform active:scale-95">
+                <!-- Continue Button -->
+                <button type="button" id="next-btn" class="flex items-center space-x-2 bg-brand-blue hover:bg-brand-red text-white font-bold tracking-wide text-xs px-6 py-3.5 rounded-xl shadow-md shadow-brand-blue/15 hover:shadow-brand-red/25 transition-all duration-300 transform active:scale-95">
                     <span>Continue</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
@@ -360,20 +404,20 @@
         </section>
 
         <!-- ==================== RIGHT PANEL: DYNAMIC DASHBOARD & LEAD LOCK ==================== -->
-        <section class="lg:col-span-5 relative rounded-3xl min-h-[620px] shadow-2xl flex flex-col justify-between">
+        <section class="lg:col-span-5 relative rounded-3xl min-h-[620px] shadow-2xl flex flex-col justify-between overflow-hidden border border-gray-100">
             
             <!-- THE LIVE DASHBOARD (Blurred underneath Lead Capture unless unlocked) -->
-            <div class="w-full h-full bg-slate-900/40 border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col justify-between flex-grow space-y-6 filter blur-[4px] pointer-events-none transition-all duration-500" id="live-dashboard">
+            <div class="w-full h-full bg-white rounded-3xl p-6 md:p-8 flex flex-col justify-between flex-grow space-y-6 filter blur-[4px] pointer-events-none transition-all duration-500 text-brand-dark" id="live-dashboard">
                 
                 <div class="space-y-6">
                     <!-- Dashboard Header -->
-                    <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                    <div class="flex justify-between items-center border-b border-gray-100 pb-4">
                         <div>
-                            <span class="block text-[10px] tracking-wider text-brand-success font-bold uppercase">Dynamic Breakdown</span>
-                            <h2 class="text-xl font-extrabold text-white">Investment Summary</h2>
+                            <span class="block text-[9px] tracking-wider text-brand-blue font-bold uppercase">Dynamic Breakdown</span>
+                            <h2 class="text-lg font-extrabold text-brand-dark">Investment Summary</h2>
                         </div>
-                        <span class="inline-flex px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 text-[10px] font-bold text-amber-400 items-center space-x-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span class="inline-flex px-2 py-0.5 rounded bg-amber-50 border border-amber-200 text-[9px] font-bold text-amber-600 items-center space-x-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
                             <span>Awaiting Form</span>
                         </span>
                     </div>
@@ -381,66 +425,66 @@
                     <!-- Grid Stats Cards -->
                     <div class="grid grid-cols-2 gap-4">
                         <!-- Gross Yield -->
-                        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between">
-                            <span class="text-xs text-gray-400 font-bold tracking-wide uppercase">Gross Yield</span>
-                            <div class="mt-2 flex items-baseline space-x-1">
-                                <span id="db-gross-yield" class="text-2xl font-extrabold text-white">7.24%</span>
+                        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden">
+                            <span class="text-[10px] text-brand-muted font-bold tracking-wide uppercase">Gross Yield</span>
+                            <div class="mt-2 flex items-baseline">
+                                <span id="db-gross-yield" class="text-2xl font-extrabold text-brand-dark">0.00%</span>
                             </div>
-                            <span class="block text-[9px] text-brand-success font-bold tracking-wide uppercase mt-1">Excellent Range</span>
+                            <span class="block text-[9px] text-brand-blue font-bold tracking-wide uppercase mt-1">Acquisition return</span>
                         </div>
 
                         <!-- Net Yield -->
-                        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between">
-                            <span class="text-xs text-gray-400 font-bold tracking-wide uppercase">Net Yield</span>
-                            <div class="mt-2 flex items-baseline space-x-1">
-                                <span id="db-net-yield" class="text-2xl font-extrabold text-white">4.85%</span>
+                        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden">
+                            <span class="text-[10px] text-brand-muted font-bold tracking-wide uppercase">Net Yield</span>
+                            <div class="mt-2 flex items-baseline">
+                                <span id="db-net-yield" class="text-2xl font-extrabold text-brand-dark">0.00%</span>
                             </div>
-                            <span class="block text-[9px] text-brand-primary font-bold tracking-wide uppercase mt-1">Est. Optimised</span>
+                            <span class="block text-[9px] text-brand-blue font-bold tracking-wide uppercase mt-1">Management inclusive</span>
                         </div>
 
                         <!-- Section 24 Drag -->
-                        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between col-span-2 border-l-2 border-rose-500/50">
+                        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between col-span-2 border-l-3 border-brand-red relative overflow-hidden">
                             <div class="flex justify-between items-center">
-                                <span class="text-xs text-gray-400 font-bold tracking-wide uppercase">Section 24 Tax Drag</span>
-                                <span class="text-[9px] font-extrabold bg-rose-500/15 text-rose-400 px-2 py-0.5 rounded border border-rose-500/25">High Impact</span>
+                                <span class="text-[10px] text-brand-muted font-bold tracking-wide uppercase">Section 24 Profit Leakage</span>
+                                <span class="text-[9px] font-extrabold bg-brand-red/10 text-brand-red px-2 py-0.5 rounded border border-brand-red/10">Tax drag impact</span>
                             </div>
                             <div class="mt-2 flex items-baseline space-x-2">
-                                <span id="db-tax-drag" class="text-2xl font-extrabold text-rose-400 glow-text-rose">-£2,140</span>
-                                <span class="text-[10px] text-gray-500 font-semibold">per calendar year</span>
+                                <span id="db-tax-drag" class="text-2xl font-extrabold text-brand-red">-£0.00</span>
+                                <span class="text-[10px] text-brand-muted font-semibold">per calendar year</span>
                             </div>
-                            <span class="block text-[9px] text-gray-400 font-medium mt-1.5">This represents revenue lost purely due to individual tax brackets.</span>
+                            <span class="block text-[9px] text-brand-muted font-medium mt-1">Rental income lost purely due to personal tax brackets.</span>
                         </div>
                     </div>
 
                     <!-- Visual Cash Flow Bar Chart Component -->
-                    <div class="glass-card rounded-2xl p-5 space-y-4">
+                    <div class="glass-card rounded-2xl p-5 space-y-4 relative overflow-hidden">
                         <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-gray-300 uppercase tracking-wide">Cash Flow vs Tax Drag</span>
-                            <span id="db-cash-flow" class="text-xs font-bold text-brand-success">£545 / Mo Net</span>
+                            <span class="text-[10px] font-bold text-brand-muted uppercase tracking-wide">Cash Flow vs Tax Leakage</span>
+                            <span id="db-cash-flow" class="text-xs font-bold text-brand-blue">£0.00 / Mo Net</span>
                         </div>
                         
                         <!-- Visual bar stack -->
-                        <div class="w-full h-3.5 bg-slate-950/80 rounded-full flex overflow-hidden border border-white/5">
-                            <div id="db-chart-cashflow" class="h-full bg-gradient-to-r from-brand-success to-emerald-500 dashboard-progress-fill" style="width: 72%;" title="Monthly Net cash flow"></div>
-                            <div id="db-chart-taxdrag" class="h-full bg-rose-500/80 dashboard-progress-fill" style="width: 28%;" title="Tax relief leakage"></div>
+                        <div class="w-full h-3.5 bg-gray-200 rounded-full flex overflow-hidden border border-gray-100">
+                            <div id="db-chart-cashflow" class="h-full bg-brand-blue dashboard-progress-fill" style="width: 50%;" title="Monthly Net cash flow"></div>
+                            <div id="db-chart-taxdrag" class="h-full bg-brand-red dashboard-progress-fill" style="width: 50%;" title="Tax relief leakage"></div>
                         </div>
 
-                        <div class="flex justify-between items-center text-[10px] text-gray-400 font-semibold">
-                            <div class="flex items-center space-x-1.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-brand-success"></span>
-                                <span id="db-text-cashflow">Monthly Net Cashflow (£545)</span>
+                        <div class="flex flex-col gap-1.5 text-[9px] text-brand-muted font-semibold mt-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
+                                <span id="db-text-cashflow">Monthly Net Cashflow (£0)</span>
                             </div>
-                            <div class="flex items-center space-x-1.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-                                <span id="db-text-taxdrag">Tax Relief Leakage (£210)</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+                                <span id="db-text-taxdrag">Tax Relief Leakage (£0)</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Footer Summary Branding inside Dashboard -->
-                <div class="flex justify-between items-center text-[10px] text-gray-500 font-semibold pt-4 border-t border-white/5">
-                    <span>Generated via YieldOptima™</span>
+                <div class="flex justify-between items-center text-[9px] text-brand-muted font-semibold pt-4 border-t border-gray-100">
+                    <span>Premier Client Portal v1.0</span>
                     <span>Report ID: #983-TAX</span>
                 </div>
             </div>
@@ -449,46 +493,46 @@
             <div class="absolute inset-0 z-30 lead-lock-overlay rounded-3xl p-6 md:p-8 flex flex-col justify-between shadow-2xl transition-all duration-500" id="lead-lock-screen">
                 
                 <!-- Glowing Locked Padlock -->
-                <div class="flex flex-col items-center text-center mt-4">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-success to-emerald-600 flex items-center justify-center shadow-lg shadow-brand-success/20 animate-bounce">
-                        <!-- Glowing Lock Icon SVG -->
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div class="flex flex-col items-center text-center mt-2">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-blue to-brand-red flex items-center justify-center shadow-lg shadow-brand-blue/20 animate-bounce">
+                        <!-- Lock Icon SVG -->
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
                     </div>
                     
-                    <h2 class="text-xl md:text-2xl font-extrabold tracking-tight text-white mt-4">
-                        Unlock Premium Executive Analytics
+                    <h2 class="text-lg md:text-xl font-extrabold tracking-tight text-white mt-4">
+                        Unlock Premium HMO Performance Analytics
                     </h2>
-                    <p class="text-xs text-gray-300 mt-2 leading-relaxed max-w-sm font-medium">
-                        Complete your basic details to unlock detailed UK section 24 analysis, cash flow projections, and clean printable corporate PDF reporting capabilities.
+                    <p class="text-[11px] text-gray-300 mt-2 leading-relaxed max-w-sm font-medium">
+                        Submit your details to immediately unlock detailed UK Section 24 analysis, cash flow projections, and clean printable corporate PDF reports.
                     </p>
                 </div>
 
                 <!-- Capture Form Details -->
-                <form class="space-y-4 my-6">
+                <form class="space-y-4 my-4">
                     <!-- Name Input -->
                     <div class="space-y-1">
-                        <label for="lead-name" class="block text-[10px] md:text-xs font-bold tracking-wide text-gray-400 uppercase">
+                        <label for="lead-name" class="block text-[10px] font-bold tracking-wide text-gray-300 uppercase">
                             Full Name
                         </label>
-                        <input type="text" id="lead-name" placeholder="Johnathan Doe" class="glass-input w-full rounded-xl py-3 px-4 text-sm font-medium placeholder-gray-600 focus:placeholder-transparent" required>
+                        <input type="text" id="lead-name" placeholder="Johnathan Doe" class="glass-input w-full rounded-xl py-2.5 px-4 text-xs font-semibold placeholder-gray-500 focus:placeholder-transparent text-brand-dark bg-white border-0" required>
                     </div>
 
                     <!-- Email Input -->
                     <div class="space-y-1">
-                        <label for="lead-email" class="block text-[10px] md:text-xs font-bold tracking-wide text-gray-400 uppercase">
+                        <label for="lead-email" class="block text-[10px] font-bold tracking-wide text-gray-300 uppercase">
                             Email Address
                         </label>
-                        <input type="email" id="lead-email" placeholder="johndoe@agency.com" class="glass-input w-full rounded-xl py-3 px-4 text-sm font-medium placeholder-gray-600 focus:placeholder-transparent" required>
+                        <input type="email" id="lead-email" placeholder="johndoe@gmail.com" class="glass-input w-full rounded-xl py-2.5 px-4 text-xs font-semibold placeholder-gray-500 focus:placeholder-transparent text-brand-dark bg-white border-0" required>
                     </div>
 
                     <!-- Phone Input -->
                     <div class="space-y-1">
-                        <label for="lead-phone" class="block text-[10px] md:text-xs font-bold tracking-wide text-gray-400 uppercase">
+                        <label for="lead-phone" class="block text-[10px] font-bold tracking-wide text-gray-300 uppercase">
                             Phone Number
                         </label>
-                        <input type="tel" id="lead-phone" placeholder="+44 7700 900077" class="glass-input w-full rounded-xl py-3 px-4 text-sm font-medium placeholder-gray-600 focus:placeholder-transparent" required>
+                        <input type="tel" id="lead-phone" placeholder="07700 900077" class="glass-input w-full rounded-xl py-2.5 px-4 text-xs font-semibold placeholder-gray-500 focus:placeholder-transparent text-brand-dark bg-white border-0" required>
                     </div>
 
                     <!-- Interactive Valuation Request Checkbox -->
@@ -497,35 +541,38 @@
                             <input type="checkbox" id="request-valuation" checked>
                             <span class="checkbox-checkmark mt-0.5"></span>
                             <span class="pl-6 select-none block">
-                                Include a <span class="text-brand-success font-extrabold">Free Professional Rental Valuation</span> for this property spec.
+                                Include a <span class="text-white font-extrabold underline decoration-brand-red">Free HMO Valuation & consultation</span> from local West Midlands experts.
                             </span>
                         </label>
                     </div>
 
                     <!-- Form Submit Action -->
                     <div class="pt-2">
-                        <button type="submit" class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-brand-success to-emerald-600 hover:from-brand-success/90 hover:to-emerald-600/90 text-white font-bold tracking-wide text-sm py-4 rounded-xl shadow-lg shadow-brand-success/15 hover:shadow-brand-success/25 transition-all duration-300">
+                        <button type="submit" class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-brand-blue to-[#1b347d] hover:from-brand-red hover:to-[#a01625] text-white font-bold tracking-wide text-xs py-3.5 rounded-xl shadow-lg shadow-brand-blue/15 hover:shadow-brand-red/25 transition-all duration-300">
                             <!-- Key Unlock Icon -->
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
                             </svg>
                             <span>Unlock Full Report & Print PDF</span>
                         </button>
-                        <span class="block text-center text-[9px] text-gray-500 font-semibold mt-3">We treat your data with utmost confidentiality in line with GDPR.</span>
+                        <span class="block text-center text-[9px] text-gray-400 font-semibold mt-2.5">We respect your privacy. Form data is secured and processed in line with GDPR.</span>
                     </div>
                 </form>
             </div>
         </section>
     </main>
 
-    <!-- Footer Copyright Section (No-Print) -->
-    <footer class="w-full py-6 text-center text-xs text-gray-500 font-semibold border-t border-white/5 glass-panel mt-12 no-print">
+    <!-- ==================== FOOTER (No-Print) ==================== -->
+    <footer class="w-full py-8 text-center text-xs text-brand-muted font-semibold border-t border-gray-100 bg-white mt-12 no-print">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <span>© 2026 YieldOptima. UK Property Advisory. All rights reserved.</span>
+            <div class="flex flex-col items-center md:items-start text-center md:text-left gap-1">
+                <span>© 2026 Premier Home Solutions. All rights reserved.</span>
+                <span class="text-[10px] text-gray-400">An independent family run business, with over a decade of property investment & HMO experience.</span>
+            </div>
             <div class="flex space-x-6">
-                <a href="#" class="hover:text-brand-success transition">Tax Policy Disclaimer</a>
-                <a href="#" class="hover:text-brand-success transition">Privacy Agreement</a>
-                <a href="#" class="hover:text-brand-success transition">Agency Integration</a>
+                <a href="https://premierhomesolutions.co.uk/contact-us/" class="hover:text-brand-blue transition">Contact Us</a>
+                <a href="https://premierhomesolutions.co.uk/property-investments/" class="hover:text-brand-blue transition">Investments</a>
+                <a href="#" onclick="alert('Regulatory disclaimer details: This tool is created strictly for illustrative modelling purposes using generic UK tax regulations. Seek direct chartered accountant counsel before executing legal structures.')" class="hover:text-brand-blue transition">Disclaimer</a>
             </div>
         </div>
     </footer>
@@ -538,42 +585,44 @@
         <!-- Print Header -->
         <div class="print-header">
             <div>
-                <span class="print-header-brand">YIELD OPTIMA</span>
-                <span class="block text-xs uppercase tracking-wider text-gray-500 font-bold">Buy-To-Let Executive Advisory Report</span>
+                <!-- Brand logo in print -->
+                <img src="https://premierhomesolutions.co.uk/wp-content/uploads/2019/06/logo.jpg" alt="Premier Home Solutions Logo" style="height: 48px; width: auto; margin-bottom: 0.3rem; object-contain: contain;">
+                <span class="block text-[8pt] uppercase tracking-wider text-gray-500 font-extrabold">Executive BTL & HMO Property Analysis Report</span>
             </div>
             <div class="print-header-meta">
                 <p class="font-bold">Prepared for: <span class="lead-display-name">[Client Name]</span></p>
-                <p>Tax Code Compliance Period: UK fiscal 2026/2027</p>
-                <p>Date Generated: May 20, 2026</p>
+                <p>Analyst Unit: Premier Home Solutions Investment Division</p>
+                <p>Tax Code Compliance Period: UK BTL fiscal 2026/2027</p>
+                <p>Office Address: 1281 Bristol Road South, B31 2SP</p>
             </div>
         </div>
 
         <!-- Property Details Summary -->
-        <h2 class="print-section-title">1. Property Specifications & Assumptions</h2>
+        <h2 class="print-section-title">1. Property Specifications & Modeling Assumptions</h2>
         <div class="print-spec-grid">
             <div class="print-spec-item">
-                <span class="print-spec-label">Standard Purchase Value</span>
+                <span class="print-spec-label">Assumed Purchase Value</span>
                 <p id="print-purchase-price" class="print-spec-value">£350,000</p>
             </div>
             <div class="print-spec-item">
-                <span class="print-spec-label">Assumed Monthly Rent PCM</span>
+                <span class="print-spec-label">Target Gross Rent PCM</span>
                 <p id="print-monthly-rent" class="print-spec-value">£1,650</p>
             </div>
             <div class="print-spec-item">
-                <span class="print-spec-label">Mortgage Financing Structure</span>
+                <span class="print-spec-label">Leverage Strategy</span>
                 <p id="print-ltv-debt" class="print-spec-value">60% LTV (£210,000 Debt)</p>
             </div>
             <div class="print-spec-item">
-                <span class="print-spec-label">Mortgage Interest Rate (BTL)</span>
+                <span class="print-spec-label">BTL Mortgage Cost</span>
                 <p id="print-interest-rate" class="print-spec-value">4.50% Fixed p.a.</p>
             </div>
         </div>
 
         <!-- Tax Profile & Structuring Selection -->
-        <h2 class="print-section-title">2. Personal Profile & Corporate Structure</h2>
+        <h2 class="print-section-title">2. Personal Profile & Shelter Structure</h2>
         <div class="print-spec-grid">
             <div class="print-spec-item">
-                <span class="print-spec-label">Employment Income Tax Band</span>
+                <span class="print-spec-label">Employment Income Tax Bracket</span>
                 <p id="print-tax-band" class="print-spec-value">Higher Rate Taxpayer (40%)</p>
             </div>
             <div class="print-spec-item">
@@ -583,48 +632,48 @@
         </div>
 
         <!-- Analytical Yield Dashboard -->
-        <h2 class="print-section-title">3. Analytics Summary (Executive Dashboard)</h2>
+        <h2 class="print-section-title">3. Investment Metrics & Yield Dashboard</h2>
         <div class="print-dashboard-grid">
             <div class="print-dashboard-card success-accent">
                 <span class="print-card-label">Optimised Net Yield</span>
                 <p id="print-net-yield" class="print-card-value">4.85%</p>
-                <span class="block text-xs text-gray-500 mt-1">Reflects full deductions and corporate tax shelters.</span>
+                <span class="block text-[7pt] text-gray-500 mt-1">Reflects full deductions and corporate tax shelters.</span>
             </div>
             <div class="print-dashboard-card primary-accent">
                 <span class="print-card-label">Gross Property Yield</span>
                 <p id="print-gross-yield" class="print-card-value">7.24%</p>
-                <span class="block text-xs text-gray-500 mt-1">Standard return benchmark based on purchase price.</span>
+                <span class="block text-[7pt] text-gray-500 mt-1">Standard return benchmark based on purchase price.</span>
             </div>
             <div class="print-dashboard-card">
-                <span class="print-card-label">Annual Section 24 Relief Deficit</span>
+                <span class="print-card-label">Section 24 Annual Drag Deficit</span>
                 <p id="print-tax-drag" class="print-card-value text-red-600">-£0.00</p>
-                <span class="block text-xs text-gray-500 mt-1">Completely shielded by corporate structure. Savings: £2,140/yr</span>
+                <span class="block text-[7pt] text-gray-500 mt-1">Amount lost to personal tax bands. Shields up to £2,840/yr</span>
             </div>
             <div class="print-dashboard-card success-accent">
                 <span class="print-card-label">Net Monthly Cash Flow</span>
                 <p id="print-cash-flow" class="print-card-value text-emerald-600">£545.00</p>
-                <span class="block text-xs text-gray-500 mt-1">Expected net profit after debt service and corporate taxes.</span>
+                <span class="block text-[7pt] text-gray-500 mt-1">Net profit after debt service, management fees, and corporate tax.</span>
             </div>
         </div>
 
         <!-- Print Horizontal Chart Bar -->
         <div class="print-chart-container">
-            <h3 class="text-sm font-bold mb-3 uppercase tracking-wide text-gray-700">Cash Flow Allocation Breakdown</h3>
+            <h3 class="text-xs font-bold mb-3 uppercase tracking-wide text-gray-700">Cash Flow Allocation Breakdown</h3>
             <div class="print-chart-bar-bg mb-2">
                 <div id="print-chart-fill" class="print-chart-bar-fill" style="width: 72%;"></div>
             </div>
-            <div class="flex justify-between text-xs font-bold text-gray-600 mt-1">
+            <div class="flex justify-between text-[7.5pt] font-bold text-gray-600 mt-1">
                 <span>Net Rent Cash Flow Contribution (72%)</span>
                 <span>Tax Allocation / Debt Coverage (28%)</span>
             </div>
         </div>
 
         <!-- Valuation Prompts & Call to action -->
-        <h2 class="print-section-title">4. Advisory Next Steps & Professional Valuation</h2>
+        <h2 class="print-section-title">4. Advisory Recommendations & Consultation Plan</h2>
         <div class="bg-gray-50 border border-gray-200 rounded-lg p-5 mt-4">
-            <h3 class="font-extrabold text-base text-gray-900 mb-1">Requested Action: Professional Letting Valuation</h3>
-            <p class="text-xs text-gray-600 leading-relaxed">
-                The client has requested a comprehensive, in-person valuation checklist based on actual local comparative data. Our valuation advisor will touch base directly to structure the legal transfer analysis and verify correct gross-to-net assumptions.
+            <h3 class="font-extrabold text-xs text-gray-900 mb-1">Requested Action: Professional Letting Valuation & Structuring Session</h3>
+            <p class="text-[8.5pt] text-gray-600 leading-relaxed">
+                The client has requested a comprehensive professional HMO valuation and property appraisal under West Midlands municipal guidelines. A Premier Home Solutions BTL specialist will touch base directly to structure the legal SPV transfer analysis and verify correct gross-to-net assumptions.
             </p>
         </div>
 
@@ -632,7 +681,7 @@
         <div class="print-signature-block">
             <div class="print-sig-col">
                 <p class="font-bold text-gray-800">Prepared by:</p>
-                <p class="mt-8 font-medium">YieldOptima Lead Tax Advisor Signature</p>
+                <p class="mt-8 font-medium">Premier Home Solutions BTL Specialist Signature</p>
             </div>
             <div class="print-sig-col">
                 <p class="font-bold text-gray-800">Acknowledged by:</p>
@@ -643,7 +692,7 @@
         <div class="print-footer-legal">
             <p class="font-bold mb-1">Regulatory & Statutory Disclaimer:</p>
             <p>
-                This report is created purely for illustrative and mathematical modeling purposes using generic UK tax regulations. Antigravity Property Group & YieldOptima are not qualified tax attorneys or authorized financial advisors. Standard market values, interest schedules, and corporate bylaws can vary substantially across English, Scottish, and Welsh local jurisdictions. Always seek direct counsel from certified accountants (FCA/FCCA) prior to executing property legal structures or debt facilities.
+                This report is created purely for illustrative and mathematical modeling purposes using generic UK tax regulations. Premier Home Solutions is an independent family-run investment firm and does not act as qualified statutory tax attorneys or authorized financial advisors. Standard market values, interest schedules, and corporate bylaws can vary substantially. Always seek direct counsel from certified accountants (FCA/FCCA) prior to executing property legal structures or debt facilities.
             </p>
         </div>
     </div>

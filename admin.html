@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads Administration Portal - Premier Home Solutions</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#21409a',
+                        brandRed: '#bf1e2e',
+                        brandDark: '#222222',
+                        brandBg: '#f4f4f4',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Open Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: #222222;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Auth Guard Container -->
+    <div id="auth-container" class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+            <div class="text-center">
+                <img class="mx-auto h-20 w-auto" src="https://premierhomesolutions.co.uk/wp-content/uploads/2019/06/logo.jpg" alt="Premier Home Solutions Logo">
+                <h2 class="mt-6 text-2xl font-bold text-brandDark">Leads Admin Portal</h2>
+                <p class="mt-2 text-sm text-gray-500">Please enter your secret passkey to access client leads.</p>
+            </div>
+            <form class="mt-8 space-y-6" id="auth-form" onsubmit="handleAuth(event)">
+                <div class="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label for="passkey" class="sr-only">Secret Passkey</label>
+                        <input id="passkey" name="passkey" type="password" required class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-brandBlue focus:border-brandBlue focus:z-10 sm:text-sm" placeholder="Secret Passkey (e.g. premier123)">
+                    </div>
+                </div>
+                <div id="auth-error" class="text-brandRed text-sm text-center hidden font-medium"></div>
+                <div>
+                    <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-brandBlue hover:bg-brandRed transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue">
+                        Authenticate & Enter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Container (Hidden by default) -->
+    <div id="dashboard-container" class="hidden flex-grow flex flex-col">
+        <!-- Dashboard Header -->
+        <header class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <img class="h-12 w-auto" src="https://premierhomesolutions.co.uk/wp-content/uploads/2019/06/logo.jpg" alt="Premier Home Solutions Logo">
+                    <div>
+                        <h1 class="text-xl font-bold text-brandDark">Leads Administration</h1>
+                        <p class="text-xs text-gray-500 font-medium">Premier Home Solutions UK</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="toggleWebhookModal(true)" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-all shadow-sm">
+                        <svg class="h-4 w-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        CRM Webhook
+                    </button>
+                    <button onclick="handleLogout()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-lg text-white bg-brandRed hover:opacity-90 transition-all shadow-sm">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+            <!-- Metrics Overview Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Total Leads</p>
+                        <h3 id="stat-total" class="text-3xl font-bold text-brandDark mt-1">0</h3>
+                    </div>
+                    <div class="p-3 bg-blue-50 rounded-xl text-brandBlue">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Valuations Requested</p>
+                        <h3 id="stat-valuations" class="text-3xl font-bold text-emerald-600 mt-1">0</h3>
+                    </div>
+                    <div class="p-3 bg-emerald-50 rounded-xl text-emerald-600">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Highest Rent PCM</p>
+                        <h3 id="stat-max-rent" class="text-3xl font-bold text-purple-600 mt-1">£0</h3>
+                    </div>
+                    <div class="p-3 bg-purple-50 rounded-xl text-purple-600">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Top Net Cashflow</p>
+                        <h3 id="stat-max-cashflow" class="text-3xl font-bold text-amber-600 mt-1">£0/mo</h3>
+                    </div>
+                    <div class="p-3 bg-amber-50 rounded-xl text-amber-600">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M12 16v1m-4-6h8"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls and Leads Table Section -->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+                <!-- Table Controls -->
+                <div class="p-6 border-b border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4 bg-gray-50/50">
+                    <div class="w-full md:w-96 relative">
+                        <input id="search-input" oninput="applyFilters()" type="text" placeholder="Search by name, email or phone..." class="w-full px-4 py-2.5 pl-10 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-brandBlue focus:border-transparent">
+                        <svg class="absolute left-3 top-3 h-4.5 w-4.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                        <select id="valuation-filter" onchange="applyFilters()" class="px-4 py-2.5 border border-gray-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brandBlue">
+                            <option value="all">All Valuation Needs</option>
+                            <option value="yes">Requested Valuation</option>
+                            <option value="no">No Valuation</option>
+                        </select>
+                        <select id="vehicle-filter" onchange="applyFilters()" class="px-4 py-2.5 border border-gray-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brandBlue">
+                            <option value="all">All Ownership Types</option>
+                            <option value="ltd">Limited Company (SPV)</option>
+                            <option value="ind">Individual</option>
+                        </select>
+                        <button onclick="triggerCSVExport()" class="inline-flex items-center px-4 py-2.5 border border-transparent text-sm font-semibold rounded-lg text-white bg-emerald-600 hover:bg-emerald-700 transition-all shadow-sm">
+                            <svg class="h-4.5 w-4.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            Export to CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Date Captured</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Client Details</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Calculator Inputs</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Key Yield Metrics</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leads-table-body" class="bg-white divide-y divide-gray-200">
+                            <!-- Dynamically Generated Rows -->
+                            <tr id="empty-state">
+                                <td colspan="4" class="px-6 py-12 text-center text-gray-400 text-sm font-medium">
+                                    <svg class="mx-auto h-12 w-12 text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                                    No captured leads found matching current criteria.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- CRM Webhook Configuration Modal -->
+    <div id="webhook-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-8 mx-4 border border-gray-100 shadow-2xl relative">
+            <button onclick="toggleWebhookModal(false)" class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div>
+                <h3 class="text-xl font-bold text-brandDark">CRM Webhook Sync</h3>
+                <p class="text-sm text-gray-500 mt-1">Connect and sync captured leads directly to Google Sheets, Zapier, Make, or HubSpot. Every captured lead will be forwarded instantly.</p>
+            </div>
+            <form onsubmit="handleWebhookSave(event)" class="mt-6 space-y-4">
+                <div>
+                    <label for="webhook-url" class="block text-sm font-medium text-gray-700">Webhook POST Endpoint URL</label>
+                    <input id="webhook-url" name="webhook-url" type="url" placeholder="https://maker.ifttt.com/use/... or https://hooks.zapier.com/..." class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-brandBlue focus:border-transparent">
+                </div>
+                <div id="webhook-status-msg" class="text-sm text-center hidden font-medium"></div>
+                <div class="flex items-center justify-end space-x-3 pt-4">
+                    <button type="button" onclick="toggleWebhookModal(false)" class="px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 border border-transparent text-sm font-semibold rounded-lg text-white bg-brandBlue hover:bg-brandRed transition-colors duration-300">
+                        Save Configuration
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Footer -->
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-xs text-gray-400 font-medium">
+        &copy; 2026 Premier Home Solutions. All rights reserved. Leads Administration Dashboard.
+    </footer>
+
+    <!-- JavaScript Engine -->
+    <script>
+        let allLeads = [];
+        let filteredLeads = [];
+
+        // Check for cached credentials
+        window.addEventListener('DOMContentLoaded', () => {
+            const cachedKey = sessionStorage.getItem('leads_admin_key');
+            if (cachedKey) {
+                document.getElementById('passkey').value = cachedKey;
+                loadDashboard(cachedKey);
+            }
+        });
+
+        function handleAuth(event) {
+            event.preventDefault();
+            const key = document.getElementById('passkey').value.trim();
+            loadDashboard(key);
+        }
+
+        async function loadDashboard(secret) {
+            const errorDiv = document.getElementById('auth-error');
+            errorDiv.classList.add('hidden');
+
+            try {
+                const response = await fetch(`/api/leads?secret=${encodeURIComponent(secret)}`);
+                if (!response.ok) {
+                    throw new Error('Authentication failed. Incorrect passkey.');
+                }
+                
+                const leads = await response.json();
+                allLeads = leads;
+                
+                // Cache secret on success
+                sessionStorage.setItem('leads_admin_key', secret);
+
+                // Show Dashboard
+                document.getElementById('auth-container').classList.add('hidden');
+                document.getElementById('dashboard-container').classList.remove('hidden');
+
+                // Render metrics and table
+                updateMetrics();
+                applyFilters();
+                loadWebhookConfiguration(secret);
+
+            } catch (err) {
+                console.error(err);
+                errorDiv.innerText = err.message || 'Server connection failure.';
+                errorDiv.classList.remove('hidden');
+                sessionStorage.removeItem('leads_admin_key');
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('leads_admin_key');
+            document.getElementById('passkey').value = '';
+            document.getElementById('dashboard-container').classList.add('hidden');
+            document.getElementById('auth-container').classList.remove('hidden');
+            allLeads = [];
+            filteredLeads = [];
+        }
+
+        function updateMetrics() {
+            document.getElementById('stat-total').innerText = allLeads.length;
+            
+            const valuations = allLeads.filter(l => l.lead.requestValuation).length;
+            document.getElementById('stat-valuations').innerText = valuations;
+
+            let maxRent = 0;
+            let maxCashflow = 0;
+
+            allLeads.forEach(r => {
+                const rent = Number(r.inputs.monthlyRent) || 0;
+                const cf = Number(r.results.netMonthlyCashFlow) || 0;
+                if (rent > maxRent) maxRent = rent;
+                if (cf > maxCashflow) maxCashflow = cf;
+            });
+
+            document.getElementById('stat-max-rent').innerText = `£${new Intl.NumberFormat('en-GB').format(maxRent)}`;
+            document.getElementById('stat-max-cashflow').innerText = `£${new Intl.NumberFormat('en-GB').format(Math.max(0, maxCashflow).toFixed(0))}/mo`;
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const valFilter = document.getElementById('valuation-filter').value;
+            const vehicleFilter = document.getElementById('vehicle-filter').value;
+
+            filteredLeads = allLeads.filter(r => {
+                // Search term
+                const name = (r.lead.name || '').toLowerCase();
+                const email = (r.lead.email || '').toLowerCase();
+                const phone = (r.lead.phone || '').toLowerCase();
+                const matchesSearch = !query || name.includes(query) || email.includes(query) || phone.includes(query);
+
+                // Valuation
+                let matchesValuation = true;
+                if (valFilter === 'yes') matchesValuation = r.lead.requestValuation;
+                if (valFilter === 'no') matchesValuation = !r.lead.requestValuation;
+
+                // Ownership vehicle
+                let matchesVehicle = true;
+                if (vehicleFilter === 'ltd') matchesVehicle = r.inputs.isLimitedCompany;
+                if (vehicleFilter === 'ind') matchesVehicle = !r.inputs.isLimitedCompany;
+
+                return matchesSearch && matchesValuation && matchesVehicle;
+            });
+
+            renderLeadsTable();
+        }
+
+        function renderLeadsTable() {
+            const tbody = document.getElementById('leads-table-body');
+            tbody.innerHTML = '';
+
+            if (filteredLeads.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="px-6 py-12 text-center text-gray-400 text-sm font-medium">
+                            <svg class="mx-auto h-12 w-12 text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                            No captured leads found matching current criteria.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            filteredLeads.forEach(r => {
+                const date = new Date(r.timestamp);
+                const valuationBadge = r.lead.requestValuation 
+                    ? `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 mt-1">✓ Valuation Requested</span>`
+                    : `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 mt-1">No Valuation</span>`;
+
+                const vehicleBadge = r.inputs.isLimitedCompany
+                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-blue-100 text-blue-800">SPV Ltd Company</span>`
+                    : `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-800">Individual Ownership</span>`;
+
+                const row = document.createElement('tr');
+                row.className = "hover:bg-gray-50 transition-colors";
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">
+                        <div>${date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+                        <div class="text-xs text-gray-400 mt-0.5">${date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-bold text-brandDark">${escapeHTML(r.lead.name)}</div>
+                        <div class="text-xs text-gray-500">${escapeHTML(r.lead.email)}</div>
+                        <div class="text-xs text-gray-500 font-medium">${escapeHTML(r.lead.phone)}</div>
+                        ${valuationBadge}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                        <div class="font-semibold text-brandDark">£${new Intl.NumberFormat('en-GB').format(r.inputs.purchasePrice || 0)} <span class="text-xs text-gray-400 font-medium">at ${r.inputs.ltvPercent || 0}% LTV</span></div>
+                        <div class="text-xs mt-0.5">Rent: <span class="font-semibold">£${new Intl.NumberFormat('en-GB').format(r.inputs.monthlyRent || 0)} PCM</span></div>
+                        <div class="text-xs">Mortgage Rate: <span class="font-semibold">${r.inputs.mortgageRate || 0}%</span></div>
+                        <div class="mt-1">${vehicleBadge}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <div class="font-bold text-brandBlue">Gross: ${(r.results.grossYield || 0).toFixed(2)}% | Net: ${(r.results.netYield || 0).toFixed(2)}%</div>
+                        <div class="text-xs text-gray-500 mt-0.5">Monthly Cashflow: <span class="font-semibold text-emerald-600">£${new Intl.NumberFormat('en-GB', { minimumFractionDigits: 2 }).format(r.results.netMonthlyCashFlow || 0)}</span></div>
+                        <div class="text-xs text-brandRed font-medium">Section 24 Drag: £${new Intl.NumberFormat('en-GB').format(r.results.section24Impact || 0)}/yr</div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        function toggleWebhookModal(show) {
+            const modal = document.getElementById('webhook-modal');
+            const msg = document.getElementById('webhook-status-msg');
+            msg.className = "text-sm text-center hidden font-medium";
+            if (show) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        async function loadWebhookConfiguration(secret) {
+            try {
+                const res = await fetch(`/api/webhook?secret=${encodeURIComponent(secret)}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.webhookUrl) {
+                        document.getElementById('webhook-url').value = data.webhookUrl;
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to load webhook URL', e);
+            }
+        }
+
+        async function handleWebhookSave(event) {
+            event.preventDefault();
+            const webhookUrl = document.getElementById('webhook-url').value.trim();
+            const secret = sessionStorage.getItem('leads_admin_key');
+            const msg = document.getElementById('webhook-status-msg');
+
+            msg.className = "text-sm text-center text-gray-500 font-semibold";
+            msg.innerText = "Saving configuration...";
+            msg.classList.remove('hidden');
+
+            try {
+                // Post to webhook configuration API
+                const response = await fetch('/api/webhook', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ secret, webhookUrl })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    // Update Vercel side config just in case they differ
+                    fetch('/api/leads', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ secret, action: 'webhook', webhookUrl })
+                    }).catch(err => console.error('Cloud webhook update secondary sync issue:', err));
+
+                    msg.className = "text-sm text-center text-emerald-600 font-semibold";
+                    msg.innerText = "Webhook URL synced successfully!";
+                    setTimeout(() => toggleWebhookModal(false), 1500);
+                } else {
+                    throw new Error(data.message || 'Failed to save webhook.');
+                }
+            } catch (err) {
+                msg.className = "text-sm text-center text-brandRed font-semibold";
+                msg.innerText = err.message || 'Error occurred while saving.';
+            }
+        }
+
+        function triggerCSVExport() {
+            if (filteredLeads.length === 0) return alert('No lead records to export!');
+
+            const headers = ['ID', 'Timestamp', 'Name', 'Email', 'Phone', 'Valuation Requested', 'Purchase Price (£)', 'Monthly Rent (£)', 'LTV %', 'Mortgage Rate %', 'SPV Ltd Co', 'Gross Yield %', 'Net Yield %', 'Net Monthly Cashflow (£)', 'S24 Tax Drag (£/yr)', 'Ltd Co Savings (£/yr)'];
+            
+            const rows = filteredLeads.map(r => [
+                r.id,
+                new Date(r.timestamp).toLocaleString(),
+                `"${(r.lead.name || '').replace(/"/g, '""')}"`,
+                `"${(r.lead.email || '').replace(/"/g, '""')}"`,
+                `"${(r.lead.phone || '').replace(/"/g, '""')}"`,
+                r.lead.requestValuation ? 'Yes' : 'No',
+                r.inputs.purchasePrice || 0,
+                r.inputs.monthlyRent || 0,
+                r.inputs.ltvPercent || 0,
+                r.inputs.mortgageRate || 0,
+                r.inputs.isLimitedCompany ? 'Yes' : 'No',
+                (r.results.grossYield || 0).toFixed(2),
+                (r.results.netYield || 0).toFixed(2),
+                (r.results.netMonthlyCashFlow || 0).toFixed(2),
+                (r.results.section24Impact || 0).toFixed(2),
+                (r.results.ltdCoTaxSavings || 0).toFixed(2)
+            ]);
+
+            const csvContent = [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute("href", url);
+            link.setAttribute("download", `premier_leads_export_${new Date().toISOString().slice(0,10)}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

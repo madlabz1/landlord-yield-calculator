@@ -132,10 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const dragAmount = results.section24Impact;
     if (dragAmount > 0) {
       taxDragEl.textContent = '-' + formatCurrency(dragAmount);
-      taxDragEl.className = "text-2xl font-extrabold text-rose-400 glow-text-rose";
+      taxDragEl.className = "text-2xl font-extrabold text-brand-red";
     } else {
       taxDragEl.textContent = '£0';
-      taxDragEl.className = "text-2xl font-extrabold text-brand-success glow-text-emerald";
+      taxDragEl.className = "text-2xl font-extrabold text-brand-blue";
     }
 
     // Net cash flow
@@ -143,10 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const monthlyNetFlow = results.netMonthlyCashFlow;
     if (monthlyNetFlow >= 0) {
       cashFlowEl.textContent = formatCurrency(monthlyNetFlow) + ' / Mo Net';
-      cashFlowEl.className = "text-xs font-bold text-brand-success";
+      cashFlowEl.className = "text-xs font-bold text-brand-blue";
     } else {
       cashFlowEl.textContent = '-' + formatCurrency(Math.abs(monthlyNetFlow)) + ' / Mo Net';
-      cashFlowEl.className = "text-xs font-bold text-rose-400";
+      cashFlowEl.className = "text-xs font-bold text-brand-red";
     }
 
     // Update Cash Flow vs Tax Drag Chart component
@@ -217,14 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update Progress Indicators
     stepDots.forEach((dot, index) => {
       if (index === currentStep - 1) {
-        dot.classList.add('active', 'border-white/15', 'text-white');
-        dot.classList.remove('border-white/10', 'text-gray-500');
+        dot.className = 'step-dot active w-10 h-10 rounded-full text-sm flex items-center justify-center';
       } else if (index < currentStep - 1) {
-        dot.classList.add('active', 'border-white/15', 'text-white');
-        dot.classList.remove('border-white/10', 'text-gray-500');
+        dot.className = 'step-dot completed w-10 h-10 rounded-full text-sm flex items-center justify-center';
       } else {
-        dot.classList.remove('active', 'border-white/15', 'text-white');
-        dot.classList.add('border-white/10', 'text-gray-500');
+        dot.className = 'step-dot w-10 h-10 rounded-full text-sm flex items-center justify-center';
       }
     });
 
@@ -281,14 +278,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentBand = card.getAttribute('data-tax-band');
       const checkCircle = card.querySelector('.checkmark-circle');
       if (currentBand === band) {
-        card.classList.add('selected', 'border-brand-success/40');
-        card.classList.remove('border-white/10');
-        checkCircle.className = 'w-4 h-4 rounded-full bg-brand-success flex items-center justify-center checkmark-circle';
+        card.classList.add('selected');
+        checkCircle.className = 'w-4 h-4 rounded-full bg-[#21409a] flex items-center justify-center checkmark-circle';
         checkCircle.innerHTML = `<svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>`;
       } else {
-        card.classList.remove('selected', 'border-brand-success/40');
-        card.classList.add('border-white/10');
-        checkCircle.className = 'w-4 h-4 rounded-full border border-white/20 flex items-center justify-center checkmark-circle';
+        card.classList.remove('selected');
+        checkCircle.className = 'w-4 h-4 rounded-full border border-gray-300 flex items-center justify-center checkmark-circle';
         checkCircle.innerHTML = '';
       }
     });
@@ -301,11 +296,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateLtdCoUI(yesCompany) {
     isLimitedCompany = yesCompany;
     if (isLimitedCompany) {
-      toggleLtdYesBtn.className = "ltd-toggle-btn py-3 px-4 rounded-xl text-sm font-bold text-center tracking-wide transition-all duration-300 bg-gradient-to-r from-brand-success to-emerald-600 text-white shadow-lg shadow-brand-success/15 active";
-      toggleLtdNoBtn.className = "ltd-toggle-btn py-3 px-4 rounded-xl text-sm font-bold text-center tracking-wide transition-all duration-300 bg-white/5 text-gray-300 hover:text-white";
+      toggleLtdYesBtn.className = "ltd-toggle-btn py-3 px-4 rounded-xl text-xs font-bold text-center tracking-wide transition-all duration-300 bg-[#21409a] text-white shadow-md shadow-brand-blue/10 active";
+      toggleLtdNoBtn.className = "ltd-toggle-btn py-3 px-4 rounded-xl text-xs font-bold text-center tracking-wide transition-all duration-300 bg-white text-brand-dark hover:text-brand-blue border border-gray-200 shadow-sm";
     } else {
-      toggleLtdYesBtn.className = "ltd-toggle-btn py-3 px-4 rounded-xl text-sm font-bold text-center tracking-wide transition-all duration-300 bg-white/5 text-gray-300 hover:text-white";
-      toggleLtdNoBtn.className = "ltd-toggle-btn py-3 px-4 rounded-xl text-sm font-bold text-center tracking-wide transition-all duration-300 bg-gradient-to-r from-brand-success to-emerald-600 text-white shadow-lg shadow-brand-success/15 active";
+      toggleLtdYesBtn.className = "ltd-toggle-btn py-3 px-4 rounded-xl text-xs font-bold text-center tracking-wide transition-all duration-300 bg-white text-brand-dark hover:text-brand-blue border border-gray-200 shadow-sm";
+      toggleLtdNoBtn.className = "ltd-toggle-btn py-3 px-4 rounded-xl text-xs font-bold text-center tracking-wide transition-all duration-300 bg-[#21409a] text-white shadow-md shadow-brand-blue/10 active";
     }
     saveCache();
     runCalculations();

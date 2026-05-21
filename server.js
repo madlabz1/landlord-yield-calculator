@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
+const https = require('https');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,10 +18,114 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 app.use('/src', express.static(path.join(__dirname, 'src')));
 
-// Webhook endpoint to capture leads
+// Webhook forward helper (handles http and https)
+function forwardToWebhook(webhookUrl, payload) {
+    try {
+        const parsedUrl = new URL(webhookUrl);
+        const bodyString = JSON.stringify(payload);
+        const client = parsedUrl.protocol === 'https:' ? https : http;
+
+        const options = {
+            hostname: parsedUrl.hostname,
+            port: parsedUrl.port || (parsedUrl.protocol === 'https:' ? 443 : 80),
+            path: parsedUrl.pathname + parsedUrl.search,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(bodyString)
+            }
+        };
+
+        const req = client.request(options, (res) => {
+            console.log(`[Webhook forward] Responded with status: ${res.statusCode}`);
+        });
+
+        req.on('error', (err) => {
+            console.error('[Webhook error] Forwarding failed:', err.message);
+        });
+
+        req.write(bodyString);
+        req.end();
+    } catch (err) {
+        console.error('[Webhook error] Invalid URL:', webhookUrl);
+    }
+}
+
+// GET /api/leads - Retrieve Captured Leads (Secure)
+app.get('/api/leads', (req, res) => {
+    try {
+        const { secret } = req.query;
+
+        if (secret !== 'premier123') {
+            return res.status(401).json({
+                status: 'error',
+                message: 'Unauthorized: Invalid secret key.'
+            });
+        }
+
+        const dbPath = path.join(__dirname, 'leads_db.json');
+        let database = [];
+        if (fs.existsSync(dbPath)) {
+            try {
+                const rawData = fs.readFileSync(dbPath, 'utf8');
+                database = JSON.parse(rawData);
+            } catch (err) {
+                console.error('[DB ERROR] Failed to parse leads_db.json:', err);
+            }
+        }
+
+        return res.json(database);
+    } catch (error) {
+        console.error('[SERVER ERROR] Failed to fetch leads:', error);
+        return res.status(500).json({ status: 'error', message: 'Failed to retrieve database.' });
+    }
+});
+
+// GET /api/webhook - Get CRM Webhook URL
+app.get('/api/webhook', (req, res) => {
+    try {
+        const { secret } = req.query;
+        if (secret !== 'premier123') {
+            return res.status(401).json({ status: 'error', message: 'Unauthorized.' });
+        }
+
+        const configPath = path.join(__dirname, 'webhook_config.json');
+        let config = { webhookUrl: '' };
+        if (fs.existsSync(configPath)) {
+            config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        }
+
+        return res.json(config);
+    } catch (err) {
+        return res.status(500).json({ status: 'error', message: 'Failed to load webhook configuration.' });
+    }
+});
+
+// POST /api/webhook - Update CRM Webhook URL
+app.post('/api/webhook', (req, res) => {
+    try {
+        const { secret, webhookUrl } = req.body;
+        if (secret !== 'premier123') {
+            return res.status(401).json({ status: 'error', message: 'Unauthorized.' });
+        }
+
+        const configPath = path.join(__dirname, 'webhook_config.json');
+        fs.writeFileSync(configPath, JSON.stringify({ webhookUrl: webhookUrl || '' }, null, 2), 'utf8');
+
+        return res.json({
+            status: 'success',
+            message: 'CRM Webhook URL updated successfully!'
+        });
+    } catch (err) {
+        return res.status(500).json({ status: 'error', message: 'Failed to update webhook configuration.' });
+    }
+});
+
+// POST /api/leads - Webhook endpoint to capture leads
 app.post('/api/leads', (req, res) => {
     try {
-        const { lead, calculatorState } = req.body;
+        const payload = req.body;
+        const { lead, calculatorState } = payload;
 
         if (!lead || !lead.name || !lead.email || !lead.phone) {
             return res.status(400).json({
@@ -38,7 +144,7 @@ app.post('/api/leads', (req, res) => {
                 const rawData = fs.readFileSync(dbPath, 'utf8');
                 database = JSON.parse(rawData);
             } catch (err) {
-                console.error('\x1b[31m[DB ERROR] Failed to parse leads_db.json. Initialising empty database.\x1b[0m', err);
+                console.error('[DB ERROR] Failed to parse leads_db.json.', err);
             }
         }
 
@@ -70,7 +176,7 @@ app.post('/api/leads', (req, res) => {
 
         // Beautiful Colorized Log Output to Terminal
         console.log('\n\x1b[36m======================================================================\x1b[0m');
-        console.log('\x1b[32;1m🚀 NEW LEAD CAPTURED SUCCESSFULLY!\x1b[0m');
+        console.log('\x1b[32;1m🚀 NEW LOCAL LEAD CAPTURED SUCCESSFULLY!\x1b[0m');
         console.log(`\x1b[33mReceived At:\x1b[0m  ${new Date(timestamp).toLocaleString()}`);
         console.log('\x1b[36m----------------------------------------------------------------------\x1b[0m');
         console.log('\x1b[1m👤 CONTACT DETAILS:\x1b[0m');
@@ -101,6 +207,20 @@ app.post('/api/leads', (req, res) => {
             console.log(`  \x1b[32mEst. Corporate Savings:\x1b[0m £${new Intl.NumberFormat('en-GB', { minimumFractionDigits: 2 }).format(calculatorState.ltdCoTaxSavings)} /yr`);
         }
         console.log('\x1b[36m======================================================================\x1b[0m\n');
+
+        // Check if a Webhook configuration exists and forward the lead
+        const configPath = path.join(__dirname, 'webhook_config.json');
+        if (fs.existsSync(configPath)) {
+            try {
+                const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+                if (config && config.webhookUrl) {
+                    console.log(`[Webhook forward] Sending captured lead data to CRM: ${config.webhookUrl}`);
+                    forwardToWebhook(config.webhookUrl, newRecord);
+                }
+            } catch (e) {
+                console.error('[Webhook error] Failed to process webhook configuration:', e.message);
+            }
+        }
 
         // Respond with success structure
         return res.status(200).json({
