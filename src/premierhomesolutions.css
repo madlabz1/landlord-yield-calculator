@@ -274,7 +274,8 @@ input[type="range"].premium-slider::-moz-range-thumb:hover {
 
 .ltd-toggle-btn.active {
     border-color: var(--color-brand-blue);
-    background: rgba(33, 64, 154, 0.02);
+    background-color: var(--color-brand-blue) !important;
+    color: #ffffff !important;
 }
 
 .ltd-toggle-btn.active::after {
