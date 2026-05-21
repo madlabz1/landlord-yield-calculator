@@ -1,0 +1,27 @@
+{
+  "name": "landlord-yield-calculator",
+  "version": "1.0.0",
+  "description": "Premium Landlord Yield & Tax Optimisation Calculator for UK Letting Agencies",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "keywords": [
+    "realestate",
+    "calculator",
+    "yield",
+    "tax",
+    "section24",
+    "uk"
+  ],
+  "author": "Antigravity Principal Architect",
+  "license": "MIT"
+}
